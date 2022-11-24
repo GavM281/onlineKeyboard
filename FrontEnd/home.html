@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Online Keyboard</title>
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
-    <h1>------------ CodeSpeedy ----------</h1>
+    <div id="tutorial" style="background: #d0d0d0">
+        <button onclick="guideControl(1)"> Tutorial 1</button>
+        <button onclick="guideControl(2)"> Tutorial 2</button>
+        <button onclick="guideControl('close')"> Stop tutorial </button>
+
+        <div id="displayKeys">
+            <!-- Inner HTML changed to display tutorial info when starting tutorial -->
+            <div id="tutorialKeyDisplay"></div>
+
+            <div>
+                <b>Pressed Keys: </b>
+                <p id="noteList"> </p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-    <!-- white and black keys -->
-    <div data-note="C" class="key white black" ><h3>C</h3></div>
-    <div data-note="D" class="key white black" ><h3>D</h3></div>
-    <div data-note="E" class="key white" ><h3>E</h3></div>
-    <div data-note="F" class="key white black" ><h3>F</h3></div>
-    <div data-note="G" class="key white black" ><h3>G</h3></div>
-    <div data-note="A" class="key white black" ><h3>A</h3></div>
-    <div data-note="B" class="key white" ><h3>B</h3></div>
+        <!-- white and black keys -->
+        <div id="q" class="key white black" > <h3>C</h3> <h5>q</h5> <h6>1</h6> </div>
+        <div id="w" class="key white black" > <h3>D</h3> <h5>w</h5> <h6>2</h6> </div>
+        <div id="e" class="key white" >       <h3>E</h3> <h5>e</h5>            </div>
+        <div id="r" class="key white black" > <h3>F</h3> <h5>r</h5> <h6>3</h6> </div>
+        <div id="t" class="key white black" > <h3>G</h3> <h5>t</h5> <h6>4</h6> </div>
+        <div id="y" class="key white black" > <h3>A</h3> <h5>y</h5> <h6>5</h6> </div>
+        <div id="u" class="key white" >       <h3>B</h3> <h5>u</h5>            </div>
 
-    <div data-note="C" class="key white black" ><h3>C</h3></div>
-    <div data-note="D" class="key white black" ><h3>D</h3></div>
-    <div data-note="E" class="key white" ><h3>E</h3></div>
-    <div data-note="F" class="key white black" ><h3>F</h3></div>
-    <div data-note="G" class="key white black" ><h3>G</h3></div>
-    <div data-note="A" class="key white black" ><h3>A</h3></div>
-    <div data-note="B" class="key white" ><h3>B</h3></div>
+        <div id="i" class="key white black" > <h3>C</h3> <h5>i</h5> <h6>6</h6> </div>
+        <div id="o" class="key white black" > <h3>D</h3> <h5>o</h5> <h6>7</h6> </div>
+        <div id="p" class="key white" >       <h3>E</h3> <h5>p</h5>            </div>
+        <div id="m" class="key white black" > <h3>F</h3> <h5>[</h5> <h6>8</h6> </div> <!-- using id '[' wouldn't work for changing :after-->
+        <div id="a" class="key white black" > <h3>G</h3> <h5>a</h5> <h6>9</h6> </div>
+        <div id="s" class="key white black" > <h3>A</h3> <h5>s</h5> <h6>0</h6> </div>
+        <div id="d" class="key white" >       <h3>B</h3> <h5>d</h5>            </div>
 
-    <div data-note="C" class="key white black" ><h3>C</h3></div>
-    <div data-note="D" class="key white black" ><h3>D</h3></div>
-    <div data-note="E" class="key white" ><h3>E</h3></div>
-    <div data-note="F" class="key white black" ><h3>F</h3></div>
-    <div data-note="G" class="key white black" ><h3>G</h3></div>
-    <div data-note="A" class="key white black" ><h3>A</h3></div>
-    <div data-note="B" class="key white" ><h3>B</h3></div>
-   </div>  
-    <!-- Audio files -->
-   <audio id="C" src="music/tune0.mp3"></audio>
-   <audio id="O" src="music/tune (1).mp3"></audio>
-   <audio id="D" src="music/tune (2).mp3"></audio>
-   <audio id="E" src="music/tune (3).mp3"></audio>
-   <audio id="S" src="music/tune (4).mp3"></audio>
-   <audio id="P" src="music/tune (5).mp3"></audio>
-   <audio id="E1" src="music/tune (4).mp3"></audio>
-   <audio id="E" src="music/tune (3).mp3"></audio>
-   <audio id="D" src="music/tune (2).mp3"></audio>
-   <audio id="Y" src="music/tune (1).mp3"></audio>
-   <script src="script.js"></script>
+        <div id="f" class="key white black" > <h3>C</h3> <h5>f</h5> <h6>-</h6> </div>
+        <div id="g" class="key white black" > <h3>D</h3> <h5>g</h5> <h6>=</h6> </div>
+        <div id="h" class="key white" >       <h3>E</h3> <h5>h</h5>            </div>
+        <div id="j" class="key white black" > <h3>F</h3> <h5>j</h5> <h6><-</h6></div>
+        <div id="k" class="key white black" > <h3>G</h3> <h5>k</h5> <h6>]</h6> </div>
+        <div id="l" class="key white black" > <h3>A</h3> <h5>l</h5> <h6>#</h6> </div>
+        <div id=";" class="key white" >       <h3>B</h3> <h5>;</h5>            </div>
+   </div>
+
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

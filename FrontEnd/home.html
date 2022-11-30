@@ -24,7 +24,10 @@
         <button onclick="guideControl('A minor')">A minor</button>
         <button onclick="guideControl('B major')">B major</button>
         <button onclick="guideControl('B minor')">B minor</button>
+        <br>
         <button onclick="guideControl('close')"> Stop tutorial </button>
+        <button onclick="toggleEffects()"> Toggle Effects </button>
+        <Button onclick="clearPressed()">Clear</Button>
 
         <div id="displayKeys">
             <!-- Inner HTML changed to display tutorial info when starting tutorial -->
@@ -63,7 +66,10 @@
         <div id="n" class="key white black" > <h3>A</h3> <h5>n</h5> <h6>#</h6> </div>
         <div id="m" class="key white" >       <h3>B</h3> <h5>m</h5>            </div>
    </div>
+    <div class="sparksContained">
+    </div>
 
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="effects.js"></script>
 </body>
 </html>

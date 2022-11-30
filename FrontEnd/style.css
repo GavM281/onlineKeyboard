@@ -24,6 +24,7 @@ body {
     color :rgba(30, 77, 77, 0.986)
   }
   .container {
+    z-index: 4;
     /*width: 100%;*/
     background: #270349FF;
     padding:1em;
@@ -67,5 +68,15 @@ body {
     background: #270349FF;
     width: 50%;
     height: 50%;
-    z-index: 1;
+    z-index: 2;
   }
+
+/* SVG effects here*/
+.sparksContained{
+  z-index: 0;
+  position: fixed;
+  top: 199px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

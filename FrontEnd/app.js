@@ -3,6 +3,12 @@ let guideKeys = []; // All keys user needs to press to finish a guide
 let keysToPress = []; // Track keys a user still needs to press to finish a guide
 let guideStarted = false;
 
+function clearPressed(){
+    // alert("hi")
+    pressedKeys = [];
+    document.getElementById("noteList").innerHTML = "";
+}
+
 // Add event listener on keydown
 document.addEventListener('keydown', (event) => {
     let name = event.key;
@@ -79,12 +85,17 @@ function changeKeyColor(name){
     let numKey = getKeyFromBlackKey(name)
 
     if(numKey !== ""){ // numKey was changed so black key was pressed
-        styleElem.innerHTML = "#" + numKey + ":after {background: #323232;}"
+        styleElem.innerHTML = "#" + numKey + ":after {background: #5f5f5f;}"
 
         pressedKeys.push(name); // Add pressed key onto array
 
-        if (keysToPress[0] === name) { // If the expected key is the key pressed
-            keysToPress.shift(); // Remove first element from list - i.e. removing key to press
+        if(guideStarted === true) {
+            let guideOption = keysToPress[0];
+            var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
+            console.log("result 1:  " + requiredKey[1] + "  result0:  " + requiredKey[0])
+            if (requiredKey[1] === name) { // If the expected key is the key pressed
+                keysToPress.shift(); // Remove first element from list - i.e. removing key to press
+            }
         }
 
         document.addEventListener('keyup', () => { // Add event listener for keyup
@@ -95,8 +106,13 @@ function changeKeyColor(name){
         document.getElementById(name).style.background = '#dedede'; // Change color while key down
         pressedKeys.push(name); // Add pressed key onto array
 
-        if (keysToPress[0] === name) { // If the expected key is the key pressed
-            keysToPress.shift(); // Remove first element from list - i.e. removing key to press
+        if(guideStarted === true) {
+            let guideOption = keysToPress[0];
+            var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
+            console.log("result 1:  " + requiredKey[1] + "  result0:  " + requiredKey[0])
+            if (requiredKey[1] === name) { // If the expected key is the key pressed
+                keysToPress.shift(); // Remove first element from list - i.e. removing key to press
+            }
         }
 
         document.addEventListener('keyup', () => { // Add event listener for keyup
@@ -208,16 +224,16 @@ function getKeyFromBlackKey(name){
         case "3": blackKey = "r"; break;
         case "4": blackKey = "t"; break;
         case "5": blackKey = "y"; break;
-        case "6": blackKey = "i"; break;
-        case "7": blackKey = "o"; break;
-        case "8": blackKey = "m"; break;
-        case "9": blackKey = "a"; break;
-        case "0": blackKey = "s"; break;
-        case "-": blackKey = "f"; break;
-        case "=": blackKey = "g"; break;
-        case "backspace": blackKey = "j"; break;
-        case "]": blackKey = "k"; break;
-        case "#": blackKey = "l"; break;
+        case "6": blackKey = "a"; break;
+        case "7": blackKey = "s"; break;
+        case "8": blackKey = "f"; break;
+        case "9": blackKey = "g"; break;
+        case "0": blackKey = "h"; break;
+        case "-": blackKey = "z"; break;
+        case "=": blackKey = "x"; break;
+        case "backspace": blackKey = "v"; break;
+        case "]": blackKey = "b"; break;
+        case "#": blackKey = "n"; break;
         default: break;
     }
 

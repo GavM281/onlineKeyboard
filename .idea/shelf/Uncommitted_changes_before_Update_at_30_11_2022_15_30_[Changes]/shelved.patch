@@ -1,0 +1,321 @@
+Index: FrontEnd/app.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>let pressedKeys = []; // Keys user has pressed\r\nlet guideKeys = []; // All keys user needs to press to finish a guide\r\nlet keysToPress = []; // Track keys a user still needs to press to finish a guide\r\nlet guideStarted = false;\r\n\r\n// Add event listener on keydown\r\ndocument.addEventListener('keydown', (event) => {\r\n    let name = event.key;\r\n    // When key pressed call keyPressed method and pass in sound to play and name of key\r\n    switch (name) {\r\n        case \"q\": keyPressed(\"../Sounds/C3.mp3\", \"q\"); break;\r\n        case \"w\": keyPressed(\"../Sounds/D3.mp3\", \"w\"); break;\r\n        case \"e\": keyPressed(\"../Sounds/E3.mp3\", \"e\"); break;\r\n        case \"r\": keyPressed(\"../Sounds/F3.mp3\", \"r\"); break;\r\n        case \"t\": keyPressed(\"../Sounds/G3.mp3\", \"t\"); break;\r\n        case \"y\": keyPressed(\"../Sounds/A3.mp3\", \"y\"); break;\r\n        case \"u\": keyPressed(\"../Sounds/B3.mp3\", \"u\"); break;\r\n\r\n        case \"a\": keyPressed(\"../Sounds/C4.mp3\", \"a\"); break;\r\n        case \"s\": keyPressed(\"../Sounds/D4.mp3\", \"s\"); break;\r\n        case \"d\": keyPressed(\"../Sounds/E4.mp3\", \"d\"); break;\r\n        case \"f\": keyPressed(\"../Sounds/F4.mp3\", \"f\"); break;\r\n        case \"g\": keyPressed(\"../Sounds/G4.mp3\", \"g\"); break;\r\n        case \"h\": keyPressed(\"../Sounds/A4.mp3\", \"h\"); break;\r\n        case \"j\": keyPressed(\"../Sounds/B4.mp3\", \"j\"); break;\r\n\r\n        case \"z\": keyPressed(\"../Sounds/C5.mp3\", \"z\"); break;\r\n        case \"x\": keyPressed(\"../Sounds/D5.mp3\", \"x\"); break;\r\n        case \"c\": keyPressed(\"../Sounds/E5.mp3\", \"c\"); break;\r\n        case \"v\": keyPressed(\"../Sounds/F5.mp3\", \"v\"); break;\r\n        case \"b\": keyPressed(\"../Sounds/G5.mp3\", \"b\"); break;\r\n        case \"n\": keyPressed(\"../Sounds/A5.mp3\", \"n\"); break;\r\n        case \"m\": keyPressed(\"../Sounds/B5.mp3\", \"m\"); break;\r\n\r\n\r\n        // Black keys\r\n        case \"1\": keyPressed(\"../Sounds/Db3.mp3\", \"1\"); break;\r\n        case \"2\": keyPressed(\"../Sounds/Eb3.mp3\", \"2\"); break;\r\n        case \"3\": keyPressed(\"../Sounds/Gb3.mp3\", \"3\"); break;\r\n        case \"4\": keyPressed(\"../Sounds/Ab3.mp3\", \"4\"); break;\r\n        case \"5\": keyPressed(\"../Sounds/Bb3.mp3\", \"5\"); break;\r\n\r\n        case \"6\": keyPressed(\"../Sounds/Db4.mp3\", \"6\"); break;\r\n        case \"7\": keyPressed(\"../Sounds/Eb4.mp3\", \"7\"); break;\r\n        case \"8\": keyPressed(\"../Sounds/Gb4.mp3\", \"8\"); break;\r\n        case \"9\": keyPressed(\"../Sounds/Ab4.mp3\", \"9\"); break;\r\n        case \"0\": keyPressed(\"../Sounds/Bb4.mp3\", \"0\"); break;\r\n\r\n        case \"-\": keyPressed(\"../Sounds/Db5.mp3\", \"-\"); break;\r\n        case \"=\": keyPressed(\"../Sounds/Eb5.mp3\", \"=\"); break;\r\n        case \"Backspace\": keyPressed(\"../Sounds/Gb5.mp3\", \"backspace\"); break;\r\n        case \"]\": keyPressed(\"../Sounds/Ab5.mp3\", \"]\"); break;\r\n        case \"#\": keyPressed(\"../Sounds/Bb5.mp3\", \"#\"); break;\r\n    }\r\n\r\n    console.log(pressedKeys) // Print list of pressed keys\r\n    document.getElementById(\"noteList\").innerHTML = pressedKeys; // List everything pressed so far\r\n\r\n    if(guideStarted === true) { // Update list display if user started a guide\r\n\r\n        document.getElementById(\"toPressList\").innerHTML = keysToPress; // List keys user needs to press to finish tutorial\r\n    }\r\n}, false);\r\n\r\n\r\nfunction keyPressed(sound, name){\r\n    PlaySound(sound) // Play sound of note\r\n    changeKeyColor(name); // Change color of key when pressed\r\n}\r\n\r\nPlaySound = function (sound) {\r\n    let audio = new Audio(sound);\r\n    audio.loop = false;\r\n    audio.play();\r\n}\r\n\r\nfunction changeKeyColor(name){\r\n    let styleElem = document.head.appendChild(document.createElement(\"style\"));\r\n    let numKey = getKeyFromBlackKey(name)\r\n\r\n    if(numKey !== \"\"){ // numKey was changed so black key was pressed\r\n        styleElem.innerHTML = \"#\" + numKey + \":after {background: #323232;}\"\r\n\r\n        pressedKeys.push(name); // Add pressed key onto array\r\n\r\n        if (keysToPress[0] === name) { // If the expected key is the key pressed\r\n            keysToPress.shift(); // Remove first element from list - i.e. removing key to press\r\n        }\r\n\r\n        document.addEventListener('keyup', () => { // Add event listener for keyup\r\n            styleElem.innerHTML = \"#\" + numKey +\":after {background: #270349FF;}\" // Change key color back to white when key up\r\n        });\r\n\r\n    } else { // white key was pressed\r\n        document.getElementById(name).style.background = '#dedede'; // Change color while key down\r\n        pressedKeys.push(name); // Add pressed key onto array\r\n\r\n        if (keysToPress[0] === name) { // If the expected key is the key pressed\r\n            keysToPress.shift(); // Remove first element from list - i.e. removing key to press\r\n        }\r\n\r\n        document.addEventListener('keyup', () => { // Add event listener for keyup\r\n            document.getElementById(name).style.background = '#ffffff'; // Change key color back to white when key up\r\n        });\r\n    }\r\n\r\n    if(guideStarted === true) {\r\n        document.getElementById(\"toPressList\").innerHTML = keysToPress; // Refresh keysToPress list\r\n    }\r\n}\r\n\r\n// Start tutorial on button press\r\nfunction guideControl(type){\r\n    console.log(\"Tutorial to start: \" + type);\r\n\r\n    document.getElementById('tutorialKeyDisplay').innerHTML =\r\n        `<div>\r\n            <b>Keys for song:</b>\r\n            <p id=\"guideList\"></p>\r\n        </div>\r\n    \r\n        <div>\r\n            <b>To press:</b>\r\n            <p id=\"toPressList\"></p>\r\n        </div>`\r\n\r\n    switch (type) {\r\n        case 'C major':\r\n            guideKeys = ['C(a)','D(s)','E(d)','F(f)','G(g)','A(h)','B(j)','C(z)']; // Set keys\r\n            updateDisplay(); // Update display on\r\n            break;\r\n        case 'C minor':\r\n            guideKeys = ['C(a)','D(s)','Eb(7)','F(f)','G(g)','Ab(9)','B(j)','C(z)'];\r\n            updateDisplay();\r\n            break;\r\n        case 'D major':\r\n            guideKeys = ['D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)','C#(-)','D(x)'];\r\n            updateDisplay();\r\n            break;\r\n        case 'D minor':\r\n            guideKeys = ['D(s)','E(d)','F(f)','G(g)','Ab(9)','Bb(0)','C(z)','D(x)'];\r\n            updateDisplay();\r\n            break;\r\n        case 'E major':\r\n            guideKeys = ['E(d)','F#(8)','G#(9)','A(h)','B(j)','C#(-)','D#(=)','E(c)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'E minor':\r\n            guideKeys = ['E(d)','F#(8)','G(g)','A(h)','B(j)','C(z)','D(x)','E(c)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'F major':\r\n            guideKeys = ['F(f)','G(g)','A(h)','Bb(0)','C(z)','D(x)','E(c)','F(v)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'F minor':\r\n            guideKeys = ['F(f)','G(g)','Ab(9)','Bb(0)','C(z)','Db(-)','Eb(=)','F(v)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'G major':\r\n            guideKeys = ['G(g)','A(h)','B(j)','C(z)','D(x)','E(c)','F#(<-)','G(b)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'G minor':\r\n            guideKeys = ['G(g)','A(h)','B(j)','C(z)','D(x)','E(c)','F#(<-)','G(b)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'A major':\r\n                guideKeys = ['A(y)','B(u)','C#(6)','D(s)','E(d)','F#(8)','G#(9)','A(h)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'A minor':\r\n            guideKeys = ['A(y)','B(u)','C(a)','D(s)','E(d)','F(f)','G(g)','A(h)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'B major':\r\n            guideKeys = ['B(u)','C#(6)','D#(7)','E(d)','F#(8)','G#(9)','A#(0)','B(j)'];\r\n            updateDisplay();\r\n            break;\r\n            case 'B minor':\r\n            guideKeys = ['B(u)','C#(6)','D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)'];\r\n            updateDisplay();\r\n            break;\r\n        case \"close\":\r\n            document.getElementById('tutorialKeyDisplay').innerHTML = \"\";\r\n            guideStarted = false;\r\n            break;\r\n\r\n        default:\r\n            break;\r\n    }\r\n\r\n    function updateDisplay(){\r\n        guideStarted = true;\r\n        keysToPress = guideKeys; // Set keysToPress array as list of guide keys -> show user what keys they need to press\r\n        document.getElementById(\"guideList\").innerHTML = guideKeys; // Display guide keys -> all keys for song\r\n        document.getElementById(\"toPressList\").innerHTML = keysToPress; // Display keys user needs to press\r\n    }\r\n}\r\n\r\n\r\nfunction getKeyFromBlackKey(name){\r\n    let blackKey = \"\";\r\n\r\n    switch (name) {\r\n        case \"1\": blackKey = \"q\"; break;\r\n        case \"2\": blackKey = \"w\"; break;\r\n        case \"3\": blackKey = \"r\"; break;\r\n        case \"4\": blackKey = \"t\"; break;\r\n        case \"5\": blackKey = \"y\"; break;\r\n        case \"6\": blackKey = \"i\"; break;\r\n        case \"7\": blackKey = \"o\"; break;\r\n        case \"8\": blackKey = \"m\"; break;\r\n        case \"9\": blackKey = \"a\"; break;\r\n        case \"0\": blackKey = \"s\"; break;\r\n        case \"-\": blackKey = \"f\"; break;\r\n        case \"=\": blackKey = \"g\"; break;\r\n        case \"backspace\": blackKey = \"j\"; break;\r\n        case \"]\": blackKey = \"k\"; break;\r\n        case \"#\": blackKey = \"l\"; break;\r\n        default: break;\r\n    }\r\n\r\n    return blackKey;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/FrontEnd/app.js b/FrontEnd/app.js
+--- a/FrontEnd/app.js	(revision 8839b5d6b6251a5e5d29d115c33079f2d06824b5)
++++ b/FrontEnd/app.js	(date 1669821811714)
+@@ -3,6 +3,12 @@
+ let keysToPress = []; // Track keys a user still needs to press to finish a guide
+ let guideStarted = false;
+ 
++function clearPressed(){
++    // alert("hi")
++    pressedKeys = [];
++    document.getElementById("noteList").innerHTML = "";
++}
++
+ // Add event listener on keydown
+ document.addEventListener('keydown', (event) => {
+     let name = event.key;
+@@ -79,12 +85,17 @@
+     let numKey = getKeyFromBlackKey(name)
+ 
+     if(numKey !== ""){ // numKey was changed so black key was pressed
+-        styleElem.innerHTML = "#" + numKey + ":after {background: #323232;}"
++        styleElem.innerHTML = "#" + numKey + ":after {background: #5f5f5f;}"
+ 
+         pressedKeys.push(name); // Add pressed key onto array
+ 
+-        if (keysToPress[0] === name) { // If the expected key is the key pressed
+-            keysToPress.shift(); // Remove first element from list - i.e. removing key to press
++        if(guideStarted === true) {
++            let guideOption = keysToPress[0];
++            var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
++            console.log("result 1:  " + requiredKey[1] + "  result0:  " + requiredKey[0])
++            if (requiredKey[1] === name) { // If the expected key is the key pressed
++                keysToPress.shift(); // Remove first element from list - i.e. removing key to press
++            }
+         }
+ 
+         document.addEventListener('keyup', () => { // Add event listener for keyup
+@@ -95,8 +106,13 @@
+         document.getElementById(name).style.background = '#dedede'; // Change color while key down
+         pressedKeys.push(name); // Add pressed key onto array
+ 
+-        if (keysToPress[0] === name) { // If the expected key is the key pressed
+-            keysToPress.shift(); // Remove first element from list - i.e. removing key to press
++        if(guideStarted === true) {
++            let guideOption = keysToPress[0];
++            var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
++            console.log("result 1:  " + requiredKey[1] + "  result0:  " + requiredKey[0])
++            if (requiredKey[1] === name) { // If the expected key is the key pressed
++                keysToPress.shift(); // Remove first element from list - i.e. removing key to press
++            }
+         }
+ 
+         document.addEventListener('keyup', () => { // Add event listener for keyup
+@@ -208,16 +224,16 @@
+         case "3": blackKey = "r"; break;
+         case "4": blackKey = "t"; break;
+         case "5": blackKey = "y"; break;
+-        case "6": blackKey = "i"; break;
+-        case "7": blackKey = "o"; break;
+-        case "8": blackKey = "m"; break;
+-        case "9": blackKey = "a"; break;
+-        case "0": blackKey = "s"; break;
+-        case "-": blackKey = "f"; break;
+-        case "=": blackKey = "g"; break;
+-        case "backspace": blackKey = "j"; break;
+-        case "]": blackKey = "k"; break;
+-        case "#": blackKey = "l"; break;
++        case "6": blackKey = "a"; break;
++        case "7": blackKey = "s"; break;
++        case "8": blackKey = "f"; break;
++        case "9": blackKey = "g"; break;
++        case "0": blackKey = "h"; break;
++        case "-": blackKey = "z"; break;
++        case "=": blackKey = "x"; break;
++        case "backspace": blackKey = "v"; break;
++        case "]": blackKey = "b"; break;
++        case "#": blackKey = "n"; break;
+         default: break;
+     }
+ 
+Index: FrontEnd/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>body {\r\n    background: rgba(114, 167, 167, 0.986);\r\n  }\r\n  \r\n  h1{\r\n    color: cyan;\r\n    text-align: center;\r\n  }\r\n  h3{\r\n    margin-top: 350px;\r\n    text-align: center;\r\n    font-size: large;\r\n  }\r\n  h5{\r\n    margin-top: -15px;\r\n    text-align: center;\r\n    /*font-size: large;*/\r\n  }\r\n  h6{\r\n    margin-top: -400px;\r\n    margin-right: -1em;\r\n    text-align: center;\r\n    font-size: large;\r\n    color :rgba(30, 77, 77, 0.986)\r\n  }\r\n  .container {\r\n    /*width: 100%;*/\r\n    background: #270349FF;\r\n    padding:1em;\r\n    border:1px solid #000000;\r\n    display: flex;\r\n    flex-flow: row nowrap;\r\n    border-radius: 12px;\r\n  }\r\n\r\n  #tutorial{\r\n    border-radius: 12px;\r\n    /*display: flex;*/\r\n    /*flex-flow: row nowrap;*/\r\n    padding: 2em;\r\n    margin: 2em;\r\n  }\r\n  #displayKeys{\r\n    margin-top: 1em;\r\n  }\r\n  \r\n.white {\r\n    position: relative;\r\n    background: rgb(255, 255, 255);\r\n    width: 10%;\r\n    height: 400px;\r\n    margin: 0 2px;\r\n    border-radius: 6px;\r\n  }\r\n  \r\n  .white.black:after {\r\n    content: \"\";\r\n    position: absolute;\r\n    right: -28%;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n    top: 0;\r\n    background: #270349FF;\r\n    width: 50%;\r\n    height: 50%;\r\n    z-index: 1;\r\n  }
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/FrontEnd/style.css b/FrontEnd/style.css
+--- a/FrontEnd/style.css	(revision 8839b5d6b6251a5e5d29d115c33079f2d06824b5)
++++ b/FrontEnd/style.css	(date 1669822124219)
+@@ -24,6 +24,7 @@
+     color :rgba(30, 77, 77, 0.986)
+   }
+   .container {
++    z-index: 4;
+     /*width: 100%;*/
+     background: #270349FF;
+     padding:1em;
+@@ -63,5 +64,15 @@
+     background: #270349FF;
+     width: 50%;
+     height: 50%;
+-    z-index: 1;
+-  }
+\ No newline at end of file
++    z-index: 2;
++  }
++
++/* SVG effects here*/
++.sparksContained{
++  z-index: 0;
++  position: fixed;
++  top: 199px;
++  right: 0;
++  bottom: 0;
++  left: 0;
++}
+\ No newline at end of file
+Index: FrontEnd/home.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n<!--    <meta charset=\"UTF-8\">-->\r\n<!--    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">-->\r\n<!--    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">-->\r\n    <title>Online Keyboard</title>\r\n    <link rel=\"stylesheet\" href=\"style.css\">\r\n    \r\n</head>\r\n<body>\r\n    <div id=\"tutorial\" style=\"background: #d0d0d0\">\r\n        <button onclick=\"guideControl('C major')\">C major</button>\r\n        <button onclick=\"guideControl('C minor')\">C minor</button>\r\n        <button onclick=\"guideControl('D major')\">D major</button>\r\n        <button onclick=\"guideControl('D minor')\">D minor</button>\r\n        <button onclick=\"guideControl('E major')\">E major</button>\r\n        <button onclick=\"guideControl('E minor')\">E minor</button>\r\n        <button onclick=\"guideControl('F major')\">F major</button>\r\n        <button onclick=\"guideControl('F minor')\">F minor</button>\r\n        <button onclick=\"guideControl('G major')\">G major</button>\r\n        <button onclick=\"guideControl('G minor')\">G minor</button>\r\n        <button onclick=\"guideControl('A major')\">A major</button>\r\n        <button onclick=\"guideControl('A minor')\">A minor</button>\r\n        <button onclick=\"guideControl('B major')\">B major</button>\r\n        <button onclick=\"guideControl('B minor')\">B minor</button>\r\n        <button onclick=\"guideControl('close')\"> Stop tutorial </button>\r\n\r\n        <div id=\"displayKeys\">\r\n            <!-- Inner HTML changed to display tutorial info when starting tutorial -->\r\n            <div id=\"tutorialKeyDisplay\"></div>\r\n\r\n            <div>\r\n                <b>Pressed Keys: </b>\r\n                <p id=\"noteList\"> </p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container\">\r\n        <!-- white and black keys -->\r\n        <div id=\"q\" class=\"key white black\" > <h3>C</h3> <h5>q</h5> <h6>1</h6> </div>\r\n        <div id=\"w\" class=\"key white black\" > <h3>D</h3> <h5>w</h5> <h6>2</h6> </div>\r\n        <div id=\"e\" class=\"key white\" >       <h3>E</h3> <h5>e</h5>            </div>\r\n        <div id=\"r\" class=\"key white black\" > <h3>F</h3> <h5>r</h5> <h6>3</h6> </div>\r\n        <div id=\"t\" class=\"key white black\" > <h3>G</h3> <h5>t</h5> <h6>4</h6> </div>\r\n        <div id=\"y\" class=\"key white black\" > <h3>A</h3> <h5>y</h5> <h6>5</h6> </div>\r\n        <div id=\"u\" class=\"key white\" >       <h3>B</h3> <h5>u</h5>            </div>\r\n\r\n        <div id=\"a\" class=\"key white black\" > <h3>C</h3> <h5>a</h5> <h6>6</h6> </div>\r\n        <div id=\"s\" class=\"key white black\" > <h3>D</h3> <h5>s</h5> <h6>7</h6> </div>\r\n        <div id=\"d\" class=\"key white\" >       <h3>E</h3> <h5>d</h5>            </div>\r\n        <div id=\"f\" class=\"key white black\" > <h3>F</h3> <h5>f</h5> <h6>8</h6> </div> <!-- using id '[' wouldn't work for changing :after-->\r\n        <div id=\"g\" class=\"key white black\" > <h3>G</h3> <h5>g</h5> <h6>9</h6> </div>\r\n        <div id=\"h\" class=\"key white black\" > <h3>A</h3> <h5>h</h5> <h6>0</h6> </div>\r\n        <div id=\"j\" class=\"key white\" >       <h3>B</h3> <h5>j</h5>            </div>\r\n\r\n        <div id=\"z\" class=\"key white black\" > <h3>C</h3> <h5>z</h5> <h6>-</h6> </div>\r\n        <div id=\"x\" class=\"key white black\" > <h3>D</h3> <h5>x</h5> <h6>=</h6> </div>\r\n        <div id=\"c\" class=\"key white\" >       <h3>E</h3> <h5>c</h5>            </div>\r\n        <div id=\"v\" class=\"key white black\" > <h3>F</h3> <h5>v</h5> <h6><-</h6></div>\r\n        <div id=\"b\" class=\"key white black\" > <h3>G</h3> <h5>b</h5> <h6>]</h6> </div>\r\n        <div id=\"n\" class=\"key white black\" > <h3>A</h3> <h5>n</h5> <h6>#</h6> </div>\r\n        <div id=\"m\" class=\"key white\" >       <h3>B</h3> <h5>m</h5>            </div>\r\n   </div>\r\n\r\n    <script type=\"text/javascript\" src=\"app.js\"></script>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/FrontEnd/home.html b/FrontEnd/home.html
+--- a/FrontEnd/home.html	(revision 8839b5d6b6251a5e5d29d115c33079f2d06824b5)
++++ b/FrontEnd/home.html	(date 1669822118807)
+@@ -24,7 +24,10 @@
+         <button onclick="guideControl('A minor')">A minor</button>
+         <button onclick="guideControl('B major')">B major</button>
+         <button onclick="guideControl('B minor')">B minor</button>
++        <br>
+         <button onclick="guideControl('close')"> Stop tutorial </button>
++        <button onclick="toggleEffects()"> Toggle Effects </button>
++        <Button onclick="clearPressed()">Clear</Button>
+ 
+         <div id="displayKeys">
+             <!-- Inner HTML changed to display tutorial info when starting tutorial -->
+@@ -63,7 +66,10 @@
+         <div id="n" class="key white black" > <h3>A</h3> <h5>n</h5> <h6>#</h6> </div>
+         <div id="m" class="key white" >       <h3>B</h3> <h5>m</h5>            </div>
+    </div>
++    <div class="sparksContained">
++    </div>
+ 
+     <script type="text/javascript" src="app.js"></script>
++    <script type="text/javascript" src="effects.js"></script>
+ </body>
+ </html>
+\ No newline at end of file
+Index: FrontEnd/effects.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/FrontEnd/effects.js b/FrontEnd/effects.js
+new file mode 100644
+--- /dev/null	(date 1669821352387)
++++ b/FrontEnd/effects.js	(date 1669821352387)
+@@ -0,0 +1,152 @@
++//SPARKLES SCRIPT
++let SPARKLE_TIMER; //SPARKLES!!!!!!!
++const SPARKLE_CONTAINER = document.querySelector(".sparksContained");
++//Sparkle duration on the screen(After pressing a key)
++const sparkleDuration = 5;
++//Density of the sparkles on the screen.
++const SPARKLE_COUNT_DIVISOR = 6000;
++//Min and max sizes of the sparkles diplayed on the scren.
++const minSize = 1.8;
++
++const maxSize = 2.8;
++
++let playEffects = false;
++
++//Random between the min and max.
++const randomBetween = (min, max) => Math.random() * (max - min) + min;
++
++const invertRange = (number, min, max) => -number + (min + max);
++//Containing the sparkles
++const unmountSparkles = () => (SPARKLE_CONTAINER.innerHTML = " ");
++//Releasing the sparkles
++//Sparkles will disappear after the duration.
++const mountSparkles = sparkleElement => {
++    if(playEffects) {
++        window.clearTimeout(SPARKLE_TIMER);
++        SPARKLE_CONTAINER.innerHTML = sparkleElement;
++        SPARKLE_TIMER = window.setTimeout(
++            unmountSparkles,
++            sparkleDuration * 1000
++        );
++    }
++};
++
++const generateRandomSparklePath = containerDimensions => {
++    // sparkles begin a bit outside the cotainer to give it an unpredictable parttern.
++    const verticalStartOffset = 30;
++    const scaleStart = randomBetween(minSize, maxSize);
++    const x = randomBetween(0, containerDimensions.width);
++    const yStart =
++        randomBetween(0, containerDimensions.height) - verticalStartOffset;
++
++    //The sizes of the sparkles determine how fast it will fall on the screen.
++    const animationDurationMultiplier = invertRange(
++        scaleStart,
++        minSize,
++        maxSize
++    );
++    const yEndMultiplier = 40;
++    const yEnd = yStart + scaleStart * yEndMultiplier;
++    const animationDuration = randomBetween(
++        animationDurationMultiplier,
++        sparkleDuration
++    );
++
++    return generateSparklePath({
++        positionStart: [x, yStart],
++        positionEnd: [x, yEnd],
++        scaleStart: scaleStart,
++        scaleEnd: 0,
++        rotateStart: randomBetween(0, 45),
++        rotateEnd: randomBetween(90, 360),
++        hue: randomBetween(0, 360),
++        animationDuration: animationDuration
++    });
++};
++
++//Generate random sparkles within the svg.
++const generateSparklesSVG = () => {
++    const containerDimensions = SPARKLE_CONTAINER.getBoundingClientRect();
++    const containerArea =
++        containerDimensions.width * containerDimensions.height;
++    const sparkleCount = Math.round(containerArea / SPARKLE_COUNT_DIVISOR);
++    const emptySparkleArray = new Array(sparkleCount).fill(0);
++
++    //Random will be mapped randomly within the containers dimesions.
++    const randomSparklePathElements = emptySparkleArray
++        .map(() => generateRandomSparklePath(containerDimensions))
++        .join("");
++
++    return `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">${randomSparklePathElements}</svg>`;
++};
++
++//Display the sparkles on the screen.
++function toggleEffects(){
++    if(playEffects) {
++        playEffects = false;
++    }else{
++        playEffects = true;
++    }
++}
++
++const renderSparkles = () => mountSparkles(generateSparklesSVG());
++
++/*if(guideStarted === true) { // Update list display if user started a guide
++    document.addEventListener("toPressList", renderSparkles);// List keys user needs to press to finish tutorial
++}Might use this */
++//Currently set to keypress so any key on the laptop keyboard. Not on the piano keys.
++document.addEventListener("keypress", renderSparkles);
++
++/*How the sparkles displayed on the screen will be postioned and fall at the start to the end.
++  How big the sparkle will be and how it will rotate is also determined here.
++*/
++const generateSparklePath = ({
++                                 positionStart,
++                                 positionEnd,
++                                 scaleStart,
++                                 scaleEnd,
++                                 rotateStart,
++                                 rotateEnd,
++                                 hue,
++                                 animationDuration
++                             }) => {
++    return `<path d="M5 0v4h4v1H5v4H4V5H0V4h4V0z" fillRule="evenodd" fill="hsla(0, 0%, 0%, 0)">
++        <animateTransform
++          attributeType="XML"
++          attributeName="transform"
++          type="translate"
++          from="${positionStart[0]} ${positionStart[1]}"
++          to="${positionEnd[0]} ${positionEnd[1]}"
++          dur="${animationDuration}s"
++          fill="freeze"
++        />
++        <animateTransform
++          attributeType="XML"
++          attributeName="transform"
++          type="scale"
++          from="${scaleStart}"
++          to="${scaleEnd}"
++          dur="${animationDuration}s"
++          additive="sum"
++          fill="freeze"
++        />
++        <animateTransform
++          attributeType="XML"
++          attributeName="transform"
++          type="rotate"
++          from="${rotateStart} 4 4"
++          to="${rotateEnd} 4 4"
++          dur="${animationDuration}s"
++          additive="sum"
++          fill="freeze"
++        />
++        <animate
++          attributeType="CSS"
++          attributeName="fill"
++          from="hsla(${hue}, 100%, 50%, 0)"
++          to="hsla(${hue}, 100%, 50%, 1)"
++          dur="0.3s"
++          fill="freeze"
++        />
++      </path>`;
++};
+\ No newline at end of file

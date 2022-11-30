@@ -64,3 +64,12 @@ body {
     height: 50%;
     z-index: 1;
   }
+  /* SVG effects here*/
+  .sparksContained{
+    position: fixed;
+    top: 199px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+ 

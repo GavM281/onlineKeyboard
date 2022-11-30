@@ -2,12 +2,8 @@ let pressedKeys = []; // Keys user has pressed
 let guideKeys = []; // All keys user needs to press to finish a guide
 let keysToPress = []; // Track keys a user still needs to press to finish a guide
 let guideStarted = false;
+let styleElem = document.head.appendChild(document.createElement("style"));
 
-function clearPressed(){
-    // alert("hi")
-    pressedKeys = [];
-    document.getElementById("noteList").innerHTML = "";
-}
 
 // Add event listener on keydown
 document.addEventListener('keydown', (event) => {
@@ -63,8 +59,11 @@ document.addEventListener('keydown', (event) => {
     document.getElementById("noteList").innerHTML = pressedKeys; // List everything pressed so far
 
     if(guideStarted === true) { // Update list display if user started a guide
-
         document.getElementById("toPressList").innerHTML = keysToPress; // List keys user needs to press to finish tutorial
+        highlightGuideKey(name)
+        // var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
+        // requiredKey = requiredKey[1];
+        // document.getElementById(requiredKey).style.background = '#6d64ef';
     }
 }, false);
 
@@ -74,36 +73,67 @@ function keyPressed(sound, name){
     changeKeyColor(name); // Change color of key when pressed
 }
 
+function clearPressed(){
+    pressedKeys = [];
+    document.getElementById("noteList").innerHTML = "";
+}
+
 PlaySound = function (sound) {
     let audio = new Audio(sound);
     audio.loop = false;
     audio.play();
 }
 
+function highlightGuideKey(){
+    var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get key
+    requiredKey = requiredKey[1];
+    console.log("Key to Press[0]:   " + keysToPress[0]);
+    console.log("Required Key:   " + requiredKey);
+
+    let numKey = getKeyFromBlackKey(requiredKey);
+
+    if(numKey !== "") {
+        console.log("numKey!!!:  " + numKey);
+        // let styleElem = document.head.appendChild(document.createElement("style"));
+        // styleElem.innerHTML = "#" + numKey + ":after {background: ##6d64ef;}"
+        // document.getElementById(numKey).style.background = '#6d64ef';
+        styleElem.innerHTML = "#a:after {background: ##ffffff;}"
+    }else{
+        document.getElementById(requiredKey).style.background = '#6d64ef';
+        styleElem.innerHTML = "#a:after {background: ##ffffff;}"
+    }
+    styleElem = document.head.appendChild(document.createElement("style"));
+    styleElem.innerHTML = "#a:after {background: ##ffffff;}"
+    styleElem.innerHTML = "#q:after {background: ##ffffff;}"
+    styleElem.innerHTML = "#w:after {background: ##ffffff;}"
+
+}
+
 function changeKeyColor(name){
-    let styleElem = document.head.appendChild(document.createElement("style"));
+    // let styleElem = document.head.appendChild(document.createElement("style"));
     let numKey = getKeyFromBlackKey(name)
 
     if(numKey !== ""){ // numKey was changed so black key was pressed
         styleElem.innerHTML = "#" + numKey + ":after {background: #5f5f5f;}"
-
-        pressedKeys.push(name); // Add pressed key onto array
-
-        if(guideStarted === true) {
-            let guideOption = keysToPress[0];
-            var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
-            console.log("result 1:  " + requiredKey[1] + "  result0:  " + requiredKey[0])
-            if (requiredKey[1] === name) { // If the expected key is the key pressed
-                keysToPress.shift(); // Remove first element from list - i.e. removing key to press
+        removeGuideDisplayKey()
+        document.addEventListener('keyup', (event) => { // Add event listener for keyup
+            if(event.key === name) {
+                styleElem.innerHTML = "#" + numKey + ":after {background: #270349FF;}" // Change key color back to white when key up
             }
-        }
-
-        document.addEventListener('keyup', () => { // Add event listener for keyup
-            styleElem.innerHTML = "#" + numKey +":after {background: #270349FF;}" // Change key color back to white when key up
         });
 
     } else { // white key was pressed
         document.getElementById(name).style.background = '#dedede'; // Change color while key down
+        removeGuideDisplayKey()
+        document.addEventListener('keyup', (event) => { // Add event listener for keyup
+            if(event.key === name) {
+                document.getElementById(name).style.background = '#ffffff';
+            } // Change key color back to white when key up
+        });
+    }
+
+    // Remove key from keysToPress array
+    function removeGuideDisplayKey(){
         pressedKeys.push(name); // Add pressed key onto array
 
         if(guideStarted === true) {
@@ -114,10 +144,6 @@ function changeKeyColor(name){
                 keysToPress.shift(); // Remove first element from list - i.e. removing key to press
             }
         }
-
-        document.addEventListener('keyup', () => { // Add event listener for keyup
-            document.getElementById(name).style.background = '#ffffff'; // Change key color back to white when key up
-        });
     }
 
     if(guideStarted === true) {
@@ -128,6 +154,17 @@ function changeKeyColor(name){
 // Start tutorial on button press
 function guideControl(type){
     console.log("Tutorial to start: " + type);
+
+    const white = document.querySelectorAll('.white');
+
+    white.forEach(box => {
+        box.style.backgroundColor = '#ffffff';
+    });
+    const black = document.querySelectorAll('.white.black');
+
+    black.forEach(box => {
+        box.style.backgroundColor = '#ffffff';
+    });
 
     document.getElementById('tutorialKeyDisplay').innerHTML =
         `<div>
@@ -161,39 +198,39 @@ function guideControl(type){
             guideKeys = ['E(d)','F#(8)','G#(9)','A(h)','B(j)','C#(-)','D#(=)','E(c)'];
             updateDisplay();
             break;
-            case 'E minor':
+        case 'E minor':
             guideKeys = ['E(d)','F#(8)','G(g)','A(h)','B(j)','C(z)','D(x)','E(c)'];
             updateDisplay();
             break;
-            case 'F major':
+        case 'F major':
             guideKeys = ['F(f)','G(g)','A(h)','Bb(0)','C(z)','D(x)','E(c)','F(v)'];
             updateDisplay();
             break;
-            case 'F minor':
+        case 'F minor':
             guideKeys = ['F(f)','G(g)','Ab(9)','Bb(0)','C(z)','Db(-)','Eb(=)','F(v)'];
             updateDisplay();
             break;
-            case 'G major':
+        case 'G major':
             guideKeys = ['G(g)','A(h)','B(j)','C(z)','D(x)','E(c)','F#(<-)','G(b)'];
             updateDisplay();
             break;
-            case 'G minor':
+        case 'G minor':
             guideKeys = ['G(g)','A(h)','B(j)','C(z)','D(x)','E(c)','F#(<-)','G(b)'];
             updateDisplay();
             break;
-            case 'A major':
+        case 'A major':
                 guideKeys = ['A(y)','B(u)','C#(6)','D(s)','E(d)','F#(8)','G#(9)','A(h)'];
             updateDisplay();
             break;
-            case 'A minor':
+        case 'A minor':
             guideKeys = ['A(y)','B(u)','C(a)','D(s)','E(d)','F(f)','G(g)','A(h)'];
             updateDisplay();
             break;
-            case 'B major':
+        case 'B major':
             guideKeys = ['B(u)','C#(6)','D#(7)','E(d)','F#(8)','G#(9)','A#(0)','B(j)'];
             updateDisplay();
             break;
-            case 'B minor':
+        case 'B minor':
             guideKeys = ['B(u)','C#(6)','D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)'];
             updateDisplay();
             break;

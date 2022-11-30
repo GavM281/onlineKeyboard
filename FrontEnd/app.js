@@ -8,49 +8,49 @@ document.addEventListener('keydown', (event) => {
     let name = event.key;
     // When key pressed call keyPressed method and pass in sound to play and name of key
     switch (name) {
-        case "q": keyPressed("../Sounds/key01.mp3", "q"); break;
-        case "w": keyPressed("../Sounds/key02.mp3", "w"); break;
-        case "e": keyPressed("../Sounds/key03.mp3", "e"); break;
-        case "r": keyPressed("../Sounds/key04.mp3", "r"); break;
-        case "t": keyPressed("../Sounds/key05.mp3", "t"); break;
-        case "y": keyPressed("../Sounds/key06.mp3", "y"); break;
-        case "u": keyPressed("../Sounds/key07.mp3", "u"); break;
+        case "q": keyPressed("../Sounds/C3.mp3", "q"); break;
+        case "w": keyPressed("../Sounds/D3.mp3", "w"); break;
+        case "e": keyPressed("../Sounds/E3.mp3", "e"); break;
+        case "r": keyPressed("../Sounds/F3.mp3", "r"); break;
+        case "t": keyPressed("../Sounds/G3.mp3", "t"); break;
+        case "y": keyPressed("../Sounds/A3.mp3", "y"); break;
+        case "u": keyPressed("../Sounds/B3.mp3", "u"); break;
 
-        case "i": keyPressed("../Sounds/key08.mp3", "i"); break;
-        case "o": keyPressed("../Sounds/key09.mp3", "o"); break;
-        case "p": keyPressed("../Sounds/key10.mp3", "p"); break;
-        case "[": keyPressed("../Sounds/key11.mp3", "m"); break;
-        case "a": keyPressed("../Sounds/key12.mp3", "a"); break;
-        case "s": keyPressed("../Sounds/key13.mp3", "s"); break;
-        case "d": keyPressed("../Sounds/key14.mp3", "d"); break;
+        case "i": keyPressed("../Sounds/C4.mp3", "i"); break;
+        case "o": keyPressed("../Sounds/D4.mp3", "o"); break;
+        case "p": keyPressed("../Sounds/E4.mp3", "p"); break;
+        case "[": keyPressed("../Sounds/F4.mp3", "m"); break;
+        case "a": keyPressed("../Sounds/G4.mp3", "a"); break;
+        case "s": keyPressed("../Sounds/A4.mp3", "s"); break;
+        case "d": keyPressed("../Sounds/B4.mp3", "d"); break;
 
-        case "f": keyPressed("../Sounds/key15.mp3", "f"); break;
-        case "g": keyPressed("../Sounds/key16.mp3", "g"); break;
-        case "h": keyPressed("../Sounds/key17.mp3", "h"); break;
-        case "j": keyPressed("../Sounds/key18.mp3", "j"); break;
-        case "k": keyPressed("../Sounds/key19.mp3", "k"); break;
-        case "l": keyPressed("../Sounds/key20.mp3", "l"); break;
-        case ";": keyPressed("../Sounds/key21.mp3", ";"); break;
+        case "f": keyPressed("../Sounds/C5.mp3", "f"); break;
+        case "g": keyPressed("../Sounds/D5.mp3", "g"); break;
+        case "h": keyPressed("../Sounds/E5.mp3", "h"); break;
+        case "j": keyPressed("../Sounds/F5.mp3", "j"); break;
+        case "k": keyPressed("../Sounds/G5.mp3", "k"); break;
+        case "l": keyPressed("../Sounds/A5.mp3", "l"); break;
+        case ";": keyPressed("../Sounds/B5.mp3", ";"); break;
 
 
         // Black keys
-        case "1": keyPressed("../Sounds/key24.mp3", "1"); break;
-        case "2": keyPressed("../Sounds/key24.mp3", "2"); break;
-        case "3": keyPressed("../Sounds/key24.mp3", "3"); break;
-        case "4": keyPressed("../Sounds/key24.mp3", "4"); break;
-        case "5": keyPressed("../Sounds/key24.mp3", "5"); break;
+        case "1": keyPressed("../Sounds/Db3.mp3", "1"); break;
+        case "2": keyPressed("../Sounds/Eb3.mp3", "2"); break;
+        case "3": keyPressed("../Sounds/Gb3.mp3", "3"); break;
+        case "4": keyPressed("../Sounds/Ab3.mp3", "4"); break;
+        case "5": keyPressed("../Sounds/Bb3.mp3", "5"); break;
 
-        case "6": keyPressed("../Sounds/key24.mp3", "6"); break;
-        case "7": keyPressed("../Sounds/key24.mp3", "7"); break;
-        case "8": keyPressed("../Sounds/key24.mp3", "8"); break;
-        case "9": keyPressed("../Sounds/key24.mp3", "9"); break;
-        case "0": keyPressed("../Sounds/key24.mp3", "0"); break;
+        case "6": keyPressed("../Sounds/Db4.mp3", "6"); break;
+        case "7": keyPressed("../Sounds/Eb4.mp3", "7"); break;
+        case "8": keyPressed("../Sounds/Gb4.mp3", "8"); break;
+        case "9": keyPressed("../Sounds/Ab4.mp3", "9"); break;
+        case "0": keyPressed("../Sounds/Bb4.mp3", "0"); break;
 
-        case "-": keyPressed("../Sounds/key24.mp3", "-"); break;
-        case "=": keyPressed("../Sounds/key24.mp3", "="); break;
-        case "Backspace": keyPressed("../Sounds/key24.mp3", "backspace"); break;
-        case "]": keyPressed("../Sounds/key24.mp3", "]"); break;
-        case "#": keyPressed("../Sounds/key24.mp3", "#"); break;
+        case "-": keyPressed("../Sounds/Db5.mp3", "-"); break;
+        case "=": keyPressed("../Sounds/Eb5.mp3", "="); break;
+        case "Backspace": keyPressed("../Sounds/Gb5.mp3", "backspace"); break;
+        case "]": keyPressed("../Sounds/Ab5.mp3", "]"); break;
+        case "#": keyPressed("../Sounds/Bb5.mp3", "#"); break;
     }
 
     console.log(pressedKeys) // Print list of pressed keys

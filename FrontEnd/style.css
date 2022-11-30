@@ -33,6 +33,10 @@ body {
     border-radius: 12px;
   }
 
+  button{
+    border-radius: 20px;
+  }
+
   #tutorial{
     border-radius: 12px;
     /*display: flex;*/

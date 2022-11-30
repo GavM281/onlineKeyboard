@@ -10,8 +10,20 @@
 </head>
 <body>
     <div id="tutorial" style="background: #d0d0d0">
-        <button onclick="guideControl(1)"> Tutorial 1</button>
-        <button onclick="guideControl(2)"> Tutorial 2</button>
+        <button onclick="guideControl('C major')">C major</button>
+        <button onclick="guideControl('C minor')">C minor</button>
+        <button onclick="guideControl('D major')">D major</button>
+        <button onclick="guideControl('D minor')">D minor</button>
+        <button onclick="guideControl('E major')">E major</button>
+        <button onclick="guideControl('E minor')">E minor</button>
+        <button onclick="guideControl('F major')">F major</button>
+        <button onclick="guideControl('F minor')">F minor</button>
+        <button onclick="guideControl('G major')">G major</button>
+        <button onclick="guideControl('G minor')">G minor</button>
+        <button onclick="guideControl('A major')">A major</button>
+        <button onclick="guideControl('A minor')">A minor</button>
+        <button onclick="guideControl('B major')">B major</button>
+        <button onclick="guideControl('B minor')">B minor</button>
         <button onclick="guideControl('close')"> Stop tutorial </button>
 
         <div id="displayKeys">
@@ -35,21 +47,21 @@
         <div id="y" class="key white black" > <h3>A</h3> <h5>y</h5> <h6>5</h6> </div>
         <div id="u" class="key white" >       <h3>B</h3> <h5>u</h5>            </div>
 
-        <div id="i" class="key white black" > <h3>C</h3> <h5>i</h5> <h6>6</h6> </div>
-        <div id="o" class="key white black" > <h3>D</h3> <h5>o</h5> <h6>7</h6> </div>
-        <div id="p" class="key white" >       <h3>E</h3> <h5>p</h5>            </div>
-        <div id="m" class="key white black" > <h3>F</h3> <h5>[</h5> <h6>8</h6> </div> <!-- using id '[' wouldn't work for changing :after-->
-        <div id="a" class="key white black" > <h3>G</h3> <h5>a</h5> <h6>9</h6> </div>
-        <div id="s" class="key white black" > <h3>A</h3> <h5>s</h5> <h6>0</h6> </div>
-        <div id="d" class="key white" >       <h3>B</h3> <h5>d</h5>            </div>
+        <div id="a" class="key white black" > <h3>C</h3> <h5>a</h5> <h6>6</h6> </div>
+        <div id="s" class="key white black" > <h3>D</h3> <h5>s</h5> <h6>7</h6> </div>
+        <div id="d" class="key white" >       <h3>E</h3> <h5>d</h5>            </div>
+        <div id="f" class="key white black" > <h3>F</h3> <h5>f</h5> <h6>8</h6> </div> <!-- using id '[' wouldn't work for changing :after-->
+        <div id="g" class="key white black" > <h3>G</h3> <h5>g</h5> <h6>9</h6> </div>
+        <div id="h" class="key white black" > <h3>A</h3> <h5>h</h5> <h6>0</h6> </div>
+        <div id="j" class="key white" >       <h3>B</h3> <h5>j</h5>            </div>
 
-        <div id="f" class="key white black" > <h3>C</h3> <h5>f</h5> <h6>-</h6> </div>
-        <div id="g" class="key white black" > <h3>D</h3> <h5>g</h5> <h6>=</h6> </div>
-        <div id="h" class="key white" >       <h3>E</h3> <h5>h</h5>            </div>
-        <div id="j" class="key white black" > <h3>F</h3> <h5>j</h5> <h6><-</h6></div>
-        <div id="k" class="key white black" > <h3>G</h3> <h5>k</h5> <h6>]</h6> </div>
-        <div id="l" class="key white black" > <h3>A</h3> <h5>l</h5> <h6>#</h6> </div>
-        <div id=";" class="key white" >       <h3>B</h3> <h5>;</h5>            </div>
+        <div id="z" class="key white black" > <h3>C</h3> <h5>z</h5> <h6>-</h6> </div>
+        <div id="x" class="key white black" > <h3>D</h3> <h5>x</h5> <h6>=</h6> </div>
+        <div id="c" class="key white" >       <h3>E</h3> <h5>c</h5>            </div>
+        <div id="v" class="key white black" > <h3>F</h3> <h5>v</h5> <h6><-</h6></div>
+        <div id="b" class="key white black" > <h3>G</h3> <h5>b</h5> <h6>]</h6> </div>
+        <div id="n" class="key white black" > <h3>A</h3> <h5>n</h5> <h6>#</h6> </div>
+        <div id="m" class="key white" >       <h3>B</h3> <h5>m</h5>            </div>
    </div>
 
     <script type="text/javascript" src="app.js"></script>

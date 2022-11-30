@@ -16,21 +16,21 @@ document.addEventListener('keydown', (event) => {
         case "y": keyPressed("../Sounds/A3.mp3", "y"); break;
         case "u": keyPressed("../Sounds/B3.mp3", "u"); break;
 
-        case "i": keyPressed("../Sounds/C4.mp3", "i"); break;
-        case "o": keyPressed("../Sounds/D4.mp3", "o"); break;
-        case "p": keyPressed("../Sounds/E4.mp3", "p"); break;
-        case "[": keyPressed("../Sounds/F4.mp3", "m"); break;
-        case "a": keyPressed("../Sounds/G4.mp3", "a"); break;
-        case "s": keyPressed("../Sounds/A4.mp3", "s"); break;
-        case "d": keyPressed("../Sounds/B4.mp3", "d"); break;
+        case "a": keyPressed("../Sounds/C4.mp3", "a"); break;
+        case "s": keyPressed("../Sounds/D4.mp3", "s"); break;
+        case "d": keyPressed("../Sounds/E4.mp3", "d"); break;
+        case "f": keyPressed("../Sounds/F4.mp3", "f"); break;
+        case "g": keyPressed("../Sounds/G4.mp3", "g"); break;
+        case "h": keyPressed("../Sounds/A4.mp3", "h"); break;
+        case "j": keyPressed("../Sounds/B4.mp3", "j"); break;
 
-        case "f": keyPressed("../Sounds/C5.mp3", "f"); break;
-        case "g": keyPressed("../Sounds/D5.mp3", "g"); break;
-        case "h": keyPressed("../Sounds/E5.mp3", "h"); break;
-        case "j": keyPressed("../Sounds/F5.mp3", "j"); break;
-        case "k": keyPressed("../Sounds/G5.mp3", "k"); break;
-        case "l": keyPressed("../Sounds/A5.mp3", "l"); break;
-        case ";": keyPressed("../Sounds/B5.mp3", ";"); break;
+        case "z": keyPressed("../Sounds/C5.mp3", "z"); break;
+        case "x": keyPressed("../Sounds/D5.mp3", "x"); break;
+        case "c": keyPressed("../Sounds/E5.mp3", "c"); break;
+        case "v": keyPressed("../Sounds/F5.mp3", "v"); break;
+        case "b": keyPressed("../Sounds/G5.mp3", "b"); break;
+        case "n": keyPressed("../Sounds/A5.mp3", "n"); break;
+        case "m": keyPressed("../Sounds/B5.mp3", "m"); break;
 
 
         // Black keys
@@ -125,7 +125,7 @@ function guideControl(type){
         </div>`
 
     switch (type) {
-        case 1:
+        case 'C major':
             guideKeys = ['a','a','a','s','d']; // Set keys
             updateDisplay(); // Update display on
             break;

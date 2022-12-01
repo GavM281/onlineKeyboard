@@ -215,7 +215,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'G minor':
-            guideKeys = ['G(g)','A(h)','B(j)','C(z)','D(x)','E(c)','F#(<-)','G(b)'];
+            guideKeys = ['G(g)','A(h)','Bb(0)','C(z)','D(x)','Eb(=)','F(v)','G(b)'];
             updateDisplay();
             break;
         case 'A major':

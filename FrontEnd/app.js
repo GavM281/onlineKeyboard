@@ -191,7 +191,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'D minor':
-            guideKeys = ['D(s)','E(d)','F(f)','G(g)','Ab(9)','Bb(0)','C(z)','D(x)'];
+            guideKeys = ['D(s)','E(d)','F(f)','G(g)','A(h)','Bb(0)','C#(-)','D(x)'];
             updateDisplay();
             break;
         case 'E major':
@@ -199,7 +199,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'E minor':
-            guideKeys = ['E(d)','F#(8)','G(g)','A(h)','B(j)','C(z)','D(x)','E(c)'];
+            guideKeys = ['E(d)','F#(8)','G(g)','A(h)','B(j)','C(z)','D#(=)','E(c)'];
             updateDisplay();
             break;
         case 'F major':
@@ -207,7 +207,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'F minor':
-            guideKeys = ['F(f)','G(g)','Ab(9)','Bb(0)','C(z)','Db(-)','Eb(=)','F(v)'];
+            guideKeys = ['F(f)','G(g)','Ab(9)','Bb(0)','C(z)','Db(-)','E(c)','F(v)'];
             updateDisplay();
             break;
         case 'G major':
@@ -215,7 +215,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'G minor':
-            guideKeys = ['G(g)','A(h)','Bb(0)','C(z)','D(x)','Eb(=)','F(v)','G(b)'];
+            guideKeys = ['G(g)','A(h)','Bb(0)','C(z)','D(x)','Eb(=)','F#(<-)','G(b)'];
             updateDisplay();
             break;
         case 'A major':
@@ -223,7 +223,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'A minor':
-            guideKeys = ['A(y)','B(u)','C(a)','D(s)','E(d)','F(f)','G(g)','A(h)'];
+            guideKeys = ['A(y)','B(u)','C(a)','D(s)','E(d)','F(f)','G#(9)','A(h)'];
             updateDisplay();
             break;
         case 'B major':
@@ -231,7 +231,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'B minor':
-            guideKeys = ['B(u)','C#(6)','D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)'];
+            guideKeys = ['B(u)','C#(6)','D(s)','E(d)','F#(8)','G(g)','A#(0)','B(j)'];
             updateDisplay();
             break;
         case "close":

@@ -291,6 +291,10 @@ function guideControl(type){
             guideKeys = ['B(u)','D(s)','F#(8)','B(j)'];
             updateDisplay();
             break;
+        case 'Do-Re-Mi':
+            guideKeys = ['C(a)','D(s)','E(d)','C(a)','E(d)','C(a)','E(d)','D(s)','E(d)','F(f)','F(f)','E(d)','D(s)','F(f)','E(d)','F(f)','G(g)','E(d)','G(g)','E(d)','G(g)','F(f)','G(g)','A(h)','A(h)','G(g)','F(f)','A(h)','G(g)','C(a)','D(s)','E(d)','F(f)','G(g)','A(h)','A(h)','D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)','B(j)','E(d)','F#(8)','G#(9)','A(h)','B(j)','C(z)','C(z)','B(j)','A(h)','F(f)','B(j)','G(g)','C(z)','G(g)','E(d)','D(s)','C(a)'];
+            updateDisplay();
+            break;
         case "close":
             document.getElementById('tutorialKeyDisplay').innerHTML = "";
             guideStarted = false;

@@ -234,6 +234,63 @@ function guideControl(type){
             guideKeys = ['B(u)','C#(6)','D(s)','E(d)','F#(8)','G(g)','A#(0)','B(j)'];
             updateDisplay();
             break;
+        // arpeggios
+        case 'C major arp':
+            guideKeys = ['C(a)','E(d)','G(g)','C(z)']; // Set keys
+            updateDisplay(); // Update display on
+            break;
+        case 'C minor arp':
+            guideKeys = ['C(a)','Eb(7)','G(g)','C(z)'];
+            updateDisplay();
+            break;
+        case 'D major arp':
+            guideKeys = ['D(s)','F#(8)','A(h)','D(x)'];
+            updateDisplay();
+            break;
+        case 'D minor arp':
+            guideKeys = ['D(s)','F(f)','A(h)','D(x)'];
+            updateDisplay();
+            break;
+        case 'E major arp':
+            guideKeys = ['E(d)','G#(9)','B(j)','E(c)'];
+            updateDisplay();
+            break;
+        case 'E minor arp':
+            guideKeys = ['E(d)','G(g)','B(j)','E(c)'];
+            updateDisplay();
+            break;
+        case 'F major arp':
+            guideKeys = ['F(f)','A(h)','C(z)','F(v)'];
+            updateDisplay();
+            break;
+        case 'F minor arp':
+            guideKeys = ['F(f)','Ab(9)','C(z)','F(v)'];
+            updateDisplay();
+            break;
+        case 'G major arp':
+            guideKeys = ['G(g)','B(j)','D(x)','G(b)'];
+            updateDisplay();
+            break;
+        case 'G minor arp':
+            guideKeys = ['G(g)','Bb(0)','D(x)','G(b)'];
+            updateDisplay();
+            break;
+        case 'A major arp':
+                guideKeys = ['A(y)','C#(6)','E(d)','A(h)'];
+            updateDisplay();
+            break;
+        case 'A minor arp':
+            guideKeys = ['A(y)','C(a)','E(d)','A(h)'];
+            updateDisplay();
+            break;
+        case 'B major arp':
+            guideKeys = ['B(u)','D#(7)','F#(8)','B(j)'];
+            updateDisplay();
+            break;
+        case 'B minor arp':
+            guideKeys = ['B(u)','D(s)','F#(8)','B(j)'];
+            updateDisplay();
+            break;
         case "close":
             document.getElementById('tutorialKeyDisplay').innerHTML = "";
             guideStarted = false;

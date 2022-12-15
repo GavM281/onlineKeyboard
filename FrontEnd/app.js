@@ -304,8 +304,26 @@ function guideControl(type){
             guideKeys = ['C(a)','D(s)','E(d)','C(a)','E(d)','C(a)','E(d)','D(s)','E(d)','F(f)','F(f)','E(d)','D(s)','F(f)','E(d)','F(f)','G(g)','E(d)','G(g)','E(d)','G(g)','F(f)','G(g)','A(h)','A(h)','G(g)','F(f)','A(h)','G(g)','C(a)','D(s)','E(d)','F(f)','G(g)','A(h)','A(h)','D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)','B(j)','E(d)','F#(8)','G#(9)','A(h)','B(j)','C(z)','C(z)','B(j)','A(h)','F(f)','B(j)','G(g)','C(z)','G(g)','E(d)','D(s)','C(a)'];
             updateDisplay();
             break;
-
-
+        case 'Twinkle Twinkle Little Star':
+            guideKeys = ['C(a)','C(a)','G(g)','G(g)','A(h)','A(h)','G(g)','F(f)','F(f)','E(d)','E(d)','D(s)','D(s)','C(a)','G(g),','G(g)','F(f)','F(f)','E(d)','E(d)','D(s)','G(g),','G(g)','F(f)','F(f)','E(d)','E(d)','D(s)','C(a)','C(a)','G(g)','G(g)','A(h)','A(h)','G(g)','F(f)','F(f)','E(d)','E(d)','D(s)','D(s)','C(a)'];
+            updateDisplay();
+            break;
+        case 'Nokia Theme':
+            guideKeys = ['E(c)','D(x)','F#(8)','G#(9)','C#(-)','B(j)','D(s)','E(d)','B(j)','A(h)','C#(6)','E(d)','A(h)'];
+            updateDisplay();
+            break;
+        case 'Pink Panther Theme':
+            guideKeys = ['C#(1)','D(w)','D#(2)','E(e)','C#(1)','D(w)','D#(2)','E(e)','D#(7)','E(d)','F#(8)','G(g)','D#(7)','E(d)','F#(8)','G(g)','C(z)','B(j)','E(d)','G(g)','B(j)','A#(0)','A(h)','G(g)','E(d)','D(s)','E(d)','D#(7)','E(d)','F#(8)','G(g)','D#(7)','E(d)','F#(8)','G(g)','C(z)','B(j)','G(g)','B(j)','E(c)','D#(=)','D#(7)','E(d)','F#(8)','G(g)','D#(7)','E(d)','F#(8)','G(g)','C(z)','B(j)','E(d)','G(g)','B(j)','A#(0)','A(h)','G(g)','E(d)','D(s)','E(d)','E(c)','D(x)','B(j)','A(h)','G(g)','E(d)','A#(0)','A(h)','A#(0)','A(h)','A#(0)','A(h)','A#(0)','A(h)','G(g)','E(d)','D(s)','E(d)','E(c)'];
+            updateDisplay();
+            break;
+        case 'Jingle Bells':
+            guideKeys = ['E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','G(g)','C(a)','D(s)','E(d)','F(f)','F(f)','F(f)','F(f)','F(f)','E(d)','E(d)','E(d)','E(d)','E(d)','D(s)','G(g)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','G(g)','C(a)','D(s)','E(d)','F(f)','F(f)','F(f)','F(f)','F(f)','E(d)','E(d)','E(d)','E(d)','G(g)','G(g)','F(f)','D(s)','C(a)','G(t)','E(d)','D(s)','C(a)','G(t)','G(t)','G(t)','G(t)','E(d)','D(s)','C(a)','A(y)','A(y)','F(f)','E(d)','D(s)','B(u)','G(g)','G(g)','F(f)','D(s)','E(d)','G(t)','E(d)','D(s)','C(a)','G(t)','G(t)','E(d)','D(s)','C(a)','A(y)','A(y)','A(y)','F(f)','E(d)','D(s)','G(g)','G(g)','G(g)','G(g)','A(h)','G(g)','F(f)','D(s)','C(a)'];
+            updateDisplay();
+            break;
+        case 'Heart and Soul':
+            guideKeys = ['C(a)','C(a)','C(a)','C(a)','B(u)','A(y)','B(u)','C(a)','D(s)','E(d)','E(d)','E(d)','E(d)','D(s)','C(a)','D(s)','E(d)','F(f)','G(g)','C(a)','A(h)','G(g)','F(f)','E(d)','D(s)','C(a)','C(z)','B(j)','A(h)','B(j)','A(h)','G(g)','F(f)','G(g)','F(f)','E(d)','D(s)','G(g)','C(a)'];
+            updateDisplay();
+            break;
         case "close":
             document.getElementById('SongKeys').innerHTML = "";
             document.getElementById('NextGuideKeys').innerHTML = "";

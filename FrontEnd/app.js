@@ -317,7 +317,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'Jingle Bells':
-            guideKeys = ['E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','G(g)','C(a)','D(s)','E(d)','F(f)','F(f)','F(f)','F(f)','F(f)','E(d)','E(d)','E(d)','E(d)','E(d)','D(s)','G(g)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','G(g)','C(a)','D(s)','E(d)','F(f)','F(f)','F(f)','F(f)','F(f)','E(d)','E(d)','E(d)','E(d)','G(g)','G(g)','F(f)','D(s)','C(a)','G(t)','E(d)','D(s)','C(a)','G(t)','G(t)','G(t)','G(t)','E(d)','D(s)','C(a)','A(y)','A(y)','F(f)','E(d)','D(s)','B(u)','G(g)','G(g)','F(f)','D(s)','E(d)','G(t)','E(d)','D(s)','C(a)','G(t)','G(t)','E(d)','D(s)','C(a)','A(y)','A(y)','A(y)','F(f)','E(d)','D(s)','G(g)','G(g)','G(g)','G(g)','A(h)','G(g)','F(f)','D(s)','C(a)'];
+            guideKeys = ['E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','G(g)','C(a)','D(s)','E(d)','F(f)','F(f)','F(f)','F(f)','F(f)','E(d)','E(d)','E(d)','E(d)','E(d)','D(s)','D(s)','E(d)','D(s)','G(g)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','E(d)','G(g)','C(a)','D(s)','E(d)','F(f)','F(f)','F(f)','F(f)','F(f)','E(d)','E(d)','E(d)','E(d)','G(g)','G(g)','F(f)','D(s)','C(a)','G(t)','E(d)','D(s)','C(a)','G(t)','G(t)','G(t)','G(t)','E(d)','D(s)','C(a)','A(y)','A(y)','F(f)','E(d)','D(s)','B(u)','G(g)','G(g)','F(f)','D(s)','E(d)','G(t)','E(d)','D(s)','C(a)','G(t)','G(t)','E(d)','D(s)','C(a)','A(y)','A(y)','A(y)','F(f)','E(d)','D(s)','G(g)','G(g)','G(g)','G(g)','A(h)','G(g)','F(f)','D(s)','C(a)'];
             updateDisplay();
             break;
         case 'Heart and Soul':

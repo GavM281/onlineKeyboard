@@ -56,7 +56,8 @@ document.addEventListener('keydown', (event) => {
     }
 
     console.log(pressedKeys) // Print list of pressed keys
-    document.getElementById("noteList").innerHTML = pressedKeys; // List everything pressed so far
+    let text = pressedKeys.toString();
+    document.getElementById("noteList").innerText = text; // List everything pressed so far
 
     if(guideStarted === true) { // Update list display if user started a guide
         document.getElementById("toPressList").innerHTML = keysToPress; // List keys user needs to press to finish tutorial
@@ -123,6 +124,7 @@ function changeKeyColor(name){
         });
 
     } else { // white key was pressed
+        styleElem.innerHTML = "#" + numKey + ":after {background: #270349FF;}" // Change key color back to white when key up
         document.getElementById(name).style.background = '#dedede'; // Change color while key down
         removeGuideDisplayKey()
         document.addEventListener('keyup', (event) => { // Add event listener for keyup
@@ -166,14 +168,13 @@ function guideControl(type){
         box.style.backgroundColor = '#ffffff';
     });
 
-    document.getElementById('tutorialKeyDisplay').innerHTML =
+    document.getElementById('SongKeys').innerHTML =
         `<div>
-            <b>Keys for song:</b>
             <p id="guideList"></p>
-        </div>
-    
-        <div>
-            <b>To press:</b>
+        </div>`
+
+    document.getElementById('NextGuideKeys').innerHTML =
+        `<div>
             <p id="toPressList"></p>
         </div>`
 
@@ -219,7 +220,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'A major':
-                guideKeys = ['A(y)','B(u)','C#(6)','D(s)','E(d)','F#(8)','G#(9)','A(h)'];
+            guideKeys = ['A(y)','B(u)','C#(6)','D(s)','E(d)','F#(8)','G#(9)','A(h)'];
             updateDisplay();
             break;
         case 'A minor':
@@ -234,7 +235,8 @@ function guideControl(type){
             guideKeys = ['B(u)','C#(6)','D(s)','E(d)','F#(8)','G(g)','A#(0)','B(j)'];
             updateDisplay();
             break;
-        // arpeggios
+
+        // Arpeggios
         case 'C major arp':
             guideKeys = ['C(a)','E(d)','G(g)','C(z)']; // Set keys
             updateDisplay(); // Update display on
@@ -276,7 +278,7 @@ function guideControl(type){
             updateDisplay();
             break;
         case 'A major arp':
-                guideKeys = ['A(y)','C#(6)','E(d)','A(h)'];
+            guideKeys = ['A(y)','C#(6)','E(d)','A(h)'];
             updateDisplay();
             break;
         case 'A minor arp':
@@ -291,12 +293,19 @@ function guideControl(type){
             guideKeys = ['B(u)','D(s)','F#(8)','B(j)'];
             updateDisplay();
             break;
+
+        //Song
         case 'Do-Re-Mi':
             guideKeys = ['C(a)','D(s)','E(d)','C(a)','E(d)','C(a)','E(d)','D(s)','E(d)','F(f)','F(f)','E(d)','D(s)','F(f)','E(d)','F(f)','G(g)','E(d)','G(g)','E(d)','G(g)','F(f)','G(g)','A(h)','A(h)','G(g)','F(f)','A(h)','G(g)','C(a)','D(s)','E(d)','F(f)','G(g)','A(h)','A(h)','D(s)','E(d)','F#(8)','G(g)','A(h)','B(j)','B(j)','E(d)','F#(8)','G#(9)','A(h)','B(j)','C(z)','C(z)','B(j)','A(h)','F(f)','B(j)','G(g)','C(z)','G(g)','E(d)','D(s)','C(a)'];
             updateDisplay();
             break;
+
+
         case "close":
-            document.getElementById('tutorialKeyDisplay').innerHTML = "";
+            document.getElementById('SongKeys').innerHTML = "";
+            document.getElementById('NextGuideKeys').innerHTML = "";
+            // document.getElementById("ControlButtons").innerHTML =
+            //     `<button class="btn btn-primary" type="button" onclick="toggleEffects()">Toggle Effects</button>`
             guideStarted = false;
             break;
 
@@ -307,6 +316,8 @@ function guideControl(type){
     function updateDisplay(){
         guideStarted = true;
         keysToPress = guideKeys; // Set keysToPress array as list of guide keys -> show user what keys they need to press
+        document.getElementById("ControlButtons").innerHTML =
+            `<button class="btn btn-primary" type="button" onclick="guideControl('close')" style="margin-right: 10px;">End Guide</button>`
         document.getElementById("guideList").innerHTML = guideKeys; // Display guide keys -> all keys for song
         document.getElementById("toPressList").innerHTML = keysToPress; // Display keys user needs to press
     }

@@ -1,29 +1,25 @@
 body {
-    background: rgba(114, 167, 167, 0.986);
+  background: rgba(114, 167, 167, 0.986);
 }
 
-h1{
-  color: cyan;
-  text-align: center;
+/*.header {*/
+/*  box-shadow: 0px 1px 1px rgba(33, 37, 41, 0.9);*/
+/*  margin-bottom: 5px;*/
+/*}*/
+
+.page-content-wrapper{
+  box-shadow: 0px 2px 5px 4px rgba(33,37,41,0.69);
+  padding: 10px 0px;
+  border-radius: 14px;
+  margin: 20px;
+  transform-style: preserve-3d;
+  z-index: 20; !important
+  position: absolute; !important;
+  /*z-index: 10;*/
 }
-h3{
-  margin-top: 350px;
-  text-align: center;
-  font-size: large;
-}
-h5{
-  margin-top: -15px;
-  text-align: center;
-  /*font-size: large;*/
-}
-h6{
-  margin-top: -400px;
-  margin-right: -1em;
-  text-align: center;
-  font-size: large;
-  color :rgba(30, 77, 77, 0.986)
-}
-.container {
+
+
+.keyboard {
   z-index: 4;
   /*width: 100%;*/
   background: #270349FF;
@@ -32,23 +28,25 @@ h6{
   display: flex;
   flex-flow: row nowrap;
   border-radius: 12px;
+  margin: 2em;
+  box-shadow: 0px 2px 5px 4px rgba(33,37,41,0.69);
+  transform-style: preserve-3d;
 }
-
-button{
-  border-radius: 20px;
-  font-weight: bold;
-  padding: 10px;
+.note{
+  margin-top: 330px;!important;
+  /*margin-right: -1em;!important;*/
+  text-align: center;!important;
 }
-
-#tutorial{
-  border-radius: 12px;
-  /*display: flex;*/
-  /*flex-flow: row nowrap;*/
-  padding: 1em;
-  margin: 1em;
+.PCkey{
+  /*margin-top: -20px;!important;*/
+  text-align: center;!important;
 }
-#displayKeys{
-  margin-top: 1em;
+.PCkeyBlack{
+  margin-top: -400px;!important;
+  margin-right: -0.5em;!important;
+  text-align: center;!important;
+  font-size: large;!important;
+  color :rgba(30, 77, 77, 0.986)
 }
 
 .white {
@@ -73,12 +71,13 @@ button{
   z-index: 2;
 }
 
-/* SVG effects here*/
+/* SVG effects*/
 .sparksContained{
   z-index: 0;
   position: fixed;
-  top: 199px;
+  top: 250px;
   right: 0;
   bottom: 0;
   left: 0;
+  /*background: gray;*/
 }

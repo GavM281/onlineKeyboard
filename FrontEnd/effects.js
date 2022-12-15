@@ -84,8 +84,10 @@ const generateSparklesSVG = () => {
 function toggleEffects(){
     if(playEffects) {
         playEffects = false;
+        document.getElementById("toggleEffects").innerText = "Toggle Effects On";
     }else{
         playEffects = true;
+        document.getElementById("toggleEffects").innerText = "Toggle Effects Off";
     }
 }
 

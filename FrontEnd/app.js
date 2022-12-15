@@ -91,22 +91,25 @@ function highlightGuideKey(){
     console.log("Key to Press[0]:   " + keysToPress[0]);
     console.log("Required Key:   " + requiredKey);
 
-    let numKey = getKeyFromBlackKey(requiredKey);
+    // let styleElem = document.head.appendChild(document.createElement("style"));
 
-    if(numKey !== "") {
-        console.log("numKey!!!:  " + numKey);
-        // let styleElem = document.head.appendChild(document.createElement("style"));
-        // styleElem.innerHTML = "#" + numKey + ":after {background: ##6d64ef;}"
-        // document.getElementById(numKey).style.background = '#6d64ef';
-        styleElem.innerHTML = "#a:after {background: ##ffffff;}"
-    }else{
-        document.getElementById(requiredKey).style.background = '#6d64ef';
-        styleElem.innerHTML = "#a:after {background: ##ffffff;}"
-    }
-    styleElem = document.head.appendChild(document.createElement("style"));
-    styleElem.innerHTML = "#a:after {background: ##ffffff;}"
-    styleElem.innerHTML = "#q:after {background: ##ffffff;}"
-    styleElem.innerHTML = "#w:after {background: ##ffffff;}"
+    let numKey = getKeyFromBlackKey(requiredKey);
+    console.log("Highlight guide key. numKey is: " + numKey)
+    document.getElementById(requiredKey).style.background = '#6d64ef';
+
+    // if(numKey !== ""){
+    //     console.log("numKey!!!:  " + numKey);
+    //     document.getElementById(requiredKey).style.background = '#6d64ef';
+    //     // styleElem.innerHTML = "#f:after {background: #5f5f5f;}"
+    //     // // let styleElem = document.head.appendChild(document.createElement("style"));
+    //     // styleElem.innerHTML = "#" + numKey + ":after {background: ##6d64ef;}"
+    //     // // document.getElementById(numKey).style.background = '#6d64ef';
+    //     // styleElem.innerHTML = "#a:after {background: ##6d64ef;}"
+    // }else{
+    //     document.getElementById(requiredKey).style.background = '#6d64ef';
+    //     styleElem.innerHTML = "#a:after {background: ##ffffff;}"
+    //     styleElem.innerHTML = "#" + numKey + ":after {background: #5f5f5f;}"
+    // }
 
 }
 
@@ -114,17 +117,19 @@ function changeKeyColor(name){
     // let styleElem = document.head.appendChild(document.createElement("style"));
     let numKey = getKeyFromBlackKey(name)
 
-    if(numKey !== ""){ // numKey was changed so black key was pressed
-        styleElem.innerHTML = "#" + numKey + ":after {background: #5f5f5f;}"
+    // if(numKey !== ""){ // numKey was changed so black key was pressed
+    if(numKey){
+        console.log("BLACK KEY pressed")
+        document.getElementById(name).style.background = '#4f4f4f'; // Change color while key down
         removeGuideDisplayKey()
         document.addEventListener('keyup', (event) => { // Add event listener for keyup
             if(event.key === name) {
-                styleElem.innerHTML = "#" + numKey + ":after {background: #270349FF;}" // Change key color back to white when key up
-            }
+                document.getElementById(name).style.background = '#270349FF';
+            } // Change key color back to white when key up
         });
 
     } else { // white key was pressed
-        styleElem.innerHTML = "#" + numKey + ":after {background: #270349FF;}" // Change key color back to white when key up
+        // styleElem.innerHTML = "#" + numKey + ":after {background: #270349FF;}" // Change key color back to white when key up
         document.getElementById(name).style.background = '#dedede'; // Change color while key down
         removeGuideDisplayKey()
         document.addEventListener('keyup', (event) => { // Add event listener for keyup
@@ -316,6 +321,7 @@ function guideControl(type){
     function updateDisplay(){
         guideStarted = true;
         keysToPress = guideKeys; // Set keysToPress array as list of guide keys -> show user what keys they need to press
+        highlightGuideKey();
         document.getElementById("ControlButtons").innerHTML =
             `<button class="btn btn-primary" type="button" onclick="guideControl('close')" style="margin-right: 10px;">End Guide</button>`
         document.getElementById("guideList").innerHTML = guideKeys; // Display guide keys -> all keys for song
@@ -328,23 +334,42 @@ function getKeyFromBlackKey(name){
     let blackKey = "";
 
     switch (name) {
-        case "1": blackKey = "q"; break;
-        case "2": blackKey = "w"; break;
-        case "3": blackKey = "r"; break;
-        case "4": blackKey = "t"; break;
-        case "5": blackKey = "y"; break;
-        case "6": blackKey = "a"; break;
-        case "7": blackKey = "s"; break;
-        case "8": blackKey = "f"; break;
-        case "9": blackKey = "g"; break;
-        case "0": blackKey = "h"; break;
-        case "-": blackKey = "z"; break;
-        case "=": blackKey = "x"; break;
-        case "backspace": blackKey = "v"; break;
-        case "]": blackKey = "b"; break;
-        case "#": blackKey = "n"; break;
+        // case "1": blackKey = "q"; break;
+        // case "2": blackKey = "w"; break;
+        // case "3": blackKey = "r"; break;
+        // case "4": blackKey = "t"; break;
+        // case "5": blackKey = "y"; break;
+        // case "6": blackKey = "a"; break;
+        // case "7": blackKey = "s"; break;
+        // case "8": blackKey = "f"; break;
+        // case "9": blackKey = "g"; break;
+        // case "0": blackKey = "h"; break;
+        // case "-": blackKey = "z"; break;
+        // case "=": blackKey = "x"; break;
+        // case "backspace": blackKey = "v"; break;
+        // case "]": blackKey = "b"; break;
+        // case "#": blackKey = "n"; break;
+        // default: break;
+
+        case "1": return true;
+        case "2": return true;
+        case "3": return true;
+        case "4": return true;
+        case "5": return true;
+        case "6": return true;
+        case "7": return true;
+        case "8": return true;
+        case "9": return true;
+        case "0": return true;
+        case "-": return true;
+        case "=": return true;
+        case "backspace": return true;
+        case "]": return true;
+        case "#": return true;
         default: break;
     }
 
-    return blackKey;
+    return false;
+
+    // return blackKey;
 }

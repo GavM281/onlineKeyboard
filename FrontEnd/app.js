@@ -62,9 +62,6 @@ document.addEventListener('keydown', (event) => {
     if(guideStarted === true) { // Update list display if user started a guide
         document.getElementById("toPressList").innerHTML = keysToPress; // List keys user needs to press to finish tutorial
         highlightGuideKey(name)
-        // var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get
-        // requiredKey = requiredKey[1];
-        // document.getElementById(requiredKey).style.background = '#6d64ef';
     }
 }, false);
 
@@ -85,57 +82,40 @@ PlaySound = function (sound) {
     audio.play();
 }
 
+// Highlight the key to press for the guide
 function highlightGuideKey(){
     var requiredKey = keysToPress[0].match(/\((.*)\)/); // Get key
     requiredKey = requiredKey[1];
     console.log("Key to Press[0]:   " + keysToPress[0]);
     console.log("Required Key:   " + requiredKey);
 
-    // let styleElem = document.head.appendChild(document.createElement("style"));
-
     let numKey = getKeyFromBlackKey(requiredKey);
     console.log("Highlight guide key. numKey is: " + numKey)
     document.getElementById(requiredKey).style.background = '#6d64ef';
 
-    // if(numKey !== ""){
-    //     console.log("numKey!!!:  " + numKey);
-    //     document.getElementById(requiredKey).style.background = '#6d64ef';
-    //     // styleElem.innerHTML = "#f:after {background: #5f5f5f;}"
-    //     // // let styleElem = document.head.appendChild(document.createElement("style"));
-    //     // styleElem.innerHTML = "#" + numKey + ":after {background: ##6d64ef;}"
-    //     // // document.getElementById(numKey).style.background = '#6d64ef';
-    //     // styleElem.innerHTML = "#a:after {background: ##6d64ef;}"
-    // }else{
-    //     document.getElementById(requiredKey).style.background = '#6d64ef';
-    //     styleElem.innerHTML = "#a:after {background: ##ffffff;}"
-    //     styleElem.innerHTML = "#" + numKey + ":after {background: #5f5f5f;}"
-    // }
-
 }
 
 function changeKeyColor(name){
-    // let styleElem = document.head.appendChild(document.createElement("style"));
     let numKey = getKeyFromBlackKey(name)
 
-    // if(numKey !== ""){ // numKey was changed so black key was pressed
-    if(numKey){
-        console.log("BLACK KEY pressed")
+    if(numKey){ // If numKey is true, black key was pressed
         document.getElementById(name).style.background = '#4f4f4f'; // Change color while key down
         removeGuideDisplayKey()
         document.addEventListener('keyup', (event) => { // Add event listener for keyup
             if(event.key === name) {
-                document.getElementById(name).style.background = '#270349FF';
-            } // Change key color back to white when key up
+                document.getElementById(name).style.background = '#270349FF'; // Change key color back to black when key up
+                highlightGuideKey() // Highlight Next key in Guide
+            }
         });
 
     } else { // white key was pressed
-        // styleElem.innerHTML = "#" + numKey + ":after {background: #270349FF;}" // Change key color back to white when key up
         document.getElementById(name).style.background = '#dedede'; // Change color while key down
         removeGuideDisplayKey()
         document.addEventListener('keyup', (event) => { // Add event listener for keyup
             if(event.key === name) {
-                document.getElementById(name).style.background = '#ffffff';
-            } // Change key color back to white when key up
+                document.getElementById(name).style.background = '#ffffff'; // Change key color back to white when key up
+                highlightGuideKey() // Highlight Next key in Guide
+            }
         });
     }
 
@@ -162,22 +142,24 @@ function changeKeyColor(name){
 function guideControl(type){
     console.log("Tutorial to start: " + type);
 
+    // Reset key colors - remove highlighting
     const white = document.querySelectorAll('.white');
+    const black = document.querySelectorAll('.blackKey');
 
     white.forEach(box => {
         box.style.backgroundColor = '#ffffff';
     });
-    const black = document.querySelectorAll('.white.black');
 
     black.forEach(box => {
-        box.style.backgroundColor = '#ffffff';
+        box.style.backgroundColor = '#270349FF';
     });
 
+    // Display full list of keys
     document.getElementById('SongKeys').innerHTML =
         `<div>
             <p id="guideList"></p>
         </div>`
-
+    // Display list of keys to press next
     document.getElementById('NextGuideKeys').innerHTML =
         `<div>
             <p id="toPressList"></p>
@@ -327,8 +309,6 @@ function guideControl(type){
         case "close":
             document.getElementById('SongKeys').innerHTML = "";
             document.getElementById('NextGuideKeys').innerHTML = "";
-            // document.getElementById("ControlButtons").innerHTML =
-            //     `<button class="btn btn-primary" type="button" onclick="toggleEffects()">Toggle Effects</button>`
             guideStarted = false;
             break;
 
@@ -352,23 +332,6 @@ function getKeyFromBlackKey(name){
     let blackKey = "";
 
     switch (name) {
-        // case "1": blackKey = "q"; break;
-        // case "2": blackKey = "w"; break;
-        // case "3": blackKey = "r"; break;
-        // case "4": blackKey = "t"; break;
-        // case "5": blackKey = "y"; break;
-        // case "6": blackKey = "a"; break;
-        // case "7": blackKey = "s"; break;
-        // case "8": blackKey = "f"; break;
-        // case "9": blackKey = "g"; break;
-        // case "0": blackKey = "h"; break;
-        // case "-": blackKey = "z"; break;
-        // case "=": blackKey = "x"; break;
-        // case "backspace": blackKey = "v"; break;
-        // case "]": blackKey = "b"; break;
-        // case "#": blackKey = "n"; break;
-        // default: break;
-
         case "1": return true;
         case "2": return true;
         case "3": return true;
@@ -388,6 +351,4 @@ function getKeyFromBlackKey(name){
     }
 
     return false;
-
-    // return blackKey;
 }

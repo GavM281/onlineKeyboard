@@ -16,6 +16,15 @@
                 <div class="col-5" >
                     <button class="btn btn-primary" id="toggleEffects" type="button" onclick="toggleEffects()">Toggle Effects On</button>
                     <div id="ControlButtons" style="display: inline;"></div>
+                    <div class="dropdown d-inline-block" style="text-align: center;">
+                        <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Sound</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" onclick="soundControl('Piano')">Piano</a>
+                            <a class="dropdown-item" onclick="soundControl('Strings')">Strings</a>
+                            <a class="dropdown-item" onclick="soundControl('Harp')">Harp</a>
+                            <a class="dropdown-item" onclick="soundControl('Glockenspiel')">Glockenspiel</a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-2" >

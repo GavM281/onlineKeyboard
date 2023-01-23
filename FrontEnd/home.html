@@ -1,63 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
     <title>Online Keyboard</title>
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Brand-icons.css">
 </head>
-<body>
-    <div id="tutorial" style="background: #d0d0d0">
-        <button onclick="guideControl(1)"> Tutorial 1</button>
-        <button onclick="guideControl(2)"> Tutorial 2</button>
-        <button onclick="guideControl('close')"> Stop tutorial </button>
 
-        <div id="displayKeys">
-            <!-- Inner HTML changed to display tutorial info when starting tutorial -->
-            <div id="tutorialKeyDisplay"></div>
-            
-            <div>
-                <b>Pressed Keys: </b>
-                <p id="noteList"> </p>
+<body>
+<div id="splash-screen">
+    <h1>Online Educational Keyboard</h1>
+</div>
+
+<div id="main-body" class="hidden">
+ 
+    <div class="sparksContained"></div>
+    <div class="confettiContainer"></div>
+
+
+    <div class="page-content-wrapper" >
+        <div class="container-fluid" id="qw" style="margin-top: 8px;">
+            <div class="row header">
+                <div class="col-5" >
+                    <button class="btn btn-primary" id="toggleEffects" type="button" onclick="toggleEffects()">Toggle Effects On</button>
+                    <div id="ControlButtons" style="display: inline;"></div>
+                </div>
+
+                <div class="col-2" >
+                    <h3 class="d-flex align-items-center" href="#">
+                        <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M22 21C23.1046 21 24 20.1046 24 19V5C24 3.89543 23.1046 3 22 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H22ZM11 5H8.98486V13H7.98511V19H12V13H11V5ZM18.0151 19H22V5H19.0151V13H18.0151V19ZM17.0151 13H16.0151V5H14V13H13V19H17.0151V13ZM6.98511 19V13H5.98486V5H3L3 19H6.98511Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                        <span><b>Edu Board</b></span>
+                    </h3>
+                </div>
+
+                <div class="col-5" style="text-align: right;">
+                    <div class="dropdown d-inline-block" style="text-align: center;">
+                        <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Scales</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" onclick="guideControl('C major')">C major</a>
+                            <a class="dropdown-item" onclick="guideControl('C minor')">C minor</a>
+                            <a class="dropdown-item" onclick="guideControl('D major')">D major</a>
+                            <a class="dropdown-item" onclick="guideControl('D minor')">D minor</a>
+                            <a class="dropdown-item" onclick="guideControl('E major')">E major</a>
+                            <a class="dropdown-item" onclick="guideControl('E minor')">E minor</a>
+                            <a class="dropdown-item" onclick="guideControl('F major')">F major</a>
+                            <a class="dropdown-item" onclick="guideControl('F minor')">F minor</a>
+                            <a class="dropdown-item" onclick="guideControl('G major')">G major</a>
+                            <a class="dropdown-item" onclick="guideControl('G minor')">G minor</a>
+                            <a class="dropdown-item" onclick="guideControl('A major')">A major</a>
+                            <a class="dropdown-item" onclick="guideControl('A minor')">A minor</a>
+                            <a class="dropdown-item" onclick="guideControl('B major')">B major</a>
+                            <a class="dropdown-item" onclick="guideControl('B minor')">B minor</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block" style="text-align: center;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Arpegios</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" onclick="guideControl('C major arp')">C major</a>
+                            <a class="dropdown-item" onclick="guideControl('C minor arp')">C minor</a>
+                            <a class="dropdown-item" onclick="guideControl('D major arp')">D major</a>
+                            <a class="dropdown-item" onclick="guideControl('D minor arp')">D minor</a>
+                            <a class="dropdown-item" onclick="guideControl('E major arp')">E major</a>
+                            <a class="dropdown-item" onclick="guideControl('E minor arp')">E minor</a>
+                            <a class="dropdown-item" onclick="guideControl('F major arp')">F major</a>
+                            <a class="dropdown-item" onclick="guideControl('F minor arp')">F minor</a>
+                            <a class="dropdown-item" onclick="guideControl('G major arp')">G major</a>
+                            <a class="dropdown-item" onclick="guideControl('G minor arp')">G minor</a>
+                            <a class="dropdown-item" onclick="guideControl('A major arp')">A major</a>
+                            <a class="dropdown-item" onclick="guideControl('A minor arp')">A minor</a>
+                            <a class="dropdown-item" onclick="guideControl('B major arp')">B major</a>
+                            <a class="dropdown-item" onclick="guideControl('B minor arp')">B minor</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block" style="text-align: center;margin-bottom: 15px;">
+                        <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Songs</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" onclick="guideControl('Do-Re-Mi')">Do-Re-Mi</a>
+                            <a class="dropdown-item" onclick="guideControl('Twinkle Twinkle Little Star')">Twinkle Twinkle Little Star</a>
+                            <a class="dropdown-item" onclick="guideControl('Nokia Theme')">Nokia Theme</a>
+                            <a class="dropdown-item" onclick="guideControl('Pink Panther Theme')">Pink Panther Theme</a>
+                            <a class="dropdown-item" onclick="guideControl('Jingle Bells')">Jingle Bells</a>
+                            <a class="dropdown-item" onclick="guideControl('Heart and Soul')">Heart and Soul</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="border-radius: 19px; padding: 10px; border-top: 1px solid #aaaaaa">
+            <div class="col-4" style="border-right: 1px solid #aaaaaa">
+                <h2 class="text-center"><u>Pressed</u></h2>
+                <div style="text-align:center; word-wrap: break-word; width: 100%;">
+                    <p id="noteList"> </p>
+                    <button class="btn btn-primary btn-sm d-inline-block" type="button" onclick="clearPressed()">Clear pressed</button>
+                </div>
+
+            </div>
+            <div class="col-4 col-md-4" style="border-right: 1px solid #aaaaaa">
+                <h2 class="text-center"><u>Guide</u></h2>
+                <div style="text-align:center; word-wrap: break-word; width: 100%;">
+                    <p id="SongKeys"></p>
+                </div>
+
+            </div>
+            <div class="col-4">
+                <h2 class="text-center"><u>To Press</u></h2>
+                <div style="text-align:center; word-wrap: break-word; width: 100%;">
+                    <p id="NextGuideKeys"></p>
+                </div>
+
             </div>
         </div>
     </div>
-    <!--Testing the sparkles effects-->
-   <div class="sparksContained"></div>
-    <div class="container">
-        <!-- white and black keys -->
-        <div id="q" class="key white black" > <h3>C</h3> <h5>q</h5> <h6>1</h6> </div>
-        <div id="w" class="key white black" > <h3>D</h3> <h5>w</h5> <h6>2</h6> </div>
-        <div id="e" class="key white" >       <h3>E</h3> <h5>e</h5>            </div>
-        <div id="r" class="key white black" > <h3>F</h3> <h5>r</h5> <h6>3</h6> </div>
-        <div id="t" class="key white black" > <h3>G</h3> <h5>t</h5> <h6>4</h6> </div>
-        <div id="y" class="key white black" > <h3>A</h3> <h5>y</h5> <h6>5</h6> </div>
-        <div id="u" class="key white" >       <h3>B</h3> <h5>u</h5>            </div>
 
-        <div id="i" class="key white black" > <h3>C</h3> <h5>i</h5> <h6>6</h6> </div>
-        <div id="o" class="key white black" > <h3>D</h3> <h5>o</h5> <h6>7</h6> </div>
-        <div id="p" class="key white" >       <h3>E</h3> <h5>p</h5>            </div>
-        <div id="m" class="key white black" > <h3>F</h3> <h5>[</h5> <h6>8</h6> </div> <!-- using id '[' wouldn't work for changing :after-->
-        <div id="a" class="key white black" > <h3>G</h3> <h5>a</h5> <h6>9</h6> </div>
-        <div id="s" class="key white black" > <h3>A</h3> <h5>s</h5> <h6>0</h6> </div>
-        <div id="d" class="key white" >       <h3>B</h3> <h5>d</h5>            </div>
+    <div class="keyboard">
+        <div id="q" class="key white" > <h3 class="note">C</h3> <h5 class="PCkey">q</h5> <h6 class="PCkeyBlack">1</h6><div class="blackKey" id="1"></div> </div>
 
-        <div id="f" class="key white black" > <h3>C</h3> <h5>f</h5> <h6>-</h6> </div>
-        <div id="g" class="key white black" > <h3>D</h3> <h5>g</h5> <h6>=</h6> </div>
-        <div id="h" class="key white" >       <h3>E</h3> <h5>h</h5>            </div>
-        <div id="j" class="key white black" > <h3>F</h3> <h5>j</h5> <h6><-</h6></div>
-        <div id="k" class="key white black" > <h3>G</h3> <h5>k</h5> <h6>]</h6> </div>
-        <div id="l" class="key white black" > <h3>A</h3> <h5>l</h5> <h6>#</h6> </div>
-        <div id=";" class="key white" >       <h3>B</h3> <h5>;</h5>            </div>
-   </div>
-   
+        <div id="w" class="key white" > <h3 class="note">D</h3> <h5 class="PCkey">w</h5> <h6 class="PCkeyBlack">2</h6><div class="blackKey" id="2"></div> </div>
+        <div id="e" class="key white" > <h3 class="note">E</h3> <h5 class="PCkey">e</h5>                                                                   </div>
+        <div id="r" class="key white" > <h3 class="note">F</h3> <h5 class="PCkey">r</h5> <h6 class="PCkeyBlack">3</h6> <div class="blackKey" id="3"></div> </div>
+        <div id="t" class="key white" > <h3 class="note">G</h3> <h5 class="PCkey">t</h5> <h6 class="PCkeyBlack">4</h6> <div class="blackKey" id="4"></div> </div>
+        <div id="y" class="key white" > <h3 class="note">A</h3> <h5 class="PCkey">y</h5> <h6 class="PCkeyBlack">5</h6> <div class="blackKey" id="5"></div> </div>
+        <div id="u" class="key white" > <h3 class="note">B</h3> <h5 class="PCkey">u</h5>                                                                   </div>
+
+        <div id="a" class="key white" > <h3 class="note">C</h3> <h5 class="PCkey">a</h5> <h6 class="PCkeyBlack">6</h6>  <div class="blackKey" id="6"></div></div>
+        <div id="s" class="key white" > <h3 class="note">D</h3> <h5 class="PCkey">s</h5> <h6 class="PCkeyBlack">7</h6>  <div class="blackKey" id="7"></div></div>
+        <div id="d" class="key white" > <h3 class="note">E</h3> <h5 class="PCkey">d</h5>                                                                   </div>
+        <div id="f" class="key white" > <h3 class="note">F</h3> <h5 class="PCkey">f</h5> <h6 class="PCkeyBlack">8</h6>  <div class="blackKey" id="8"></div></div>
+        <div id="g" class="key white" > <h3 class="note">G</h3> <h5 class="PCkey">g</h5> <h6 class="PCkeyBlack">9</h6>  <div class="blackKey" id="9"></div></div>
+        <div id="h" class="key white" > <h3 class="note">A</h3> <h5 class="PCkey">h</h5> <h6 class="PCkeyBlack">0</h6>  <div class="blackKey" id="0"></div></div>
+        <div id="j" class="key white" > <h3 class="note">B</h3> <h5 class="PCkey">j</h5>                                                                   </div>
+
+        <div id="z" class="key white" > <h3 class="note">C</h3> <h5 class="PCkey">z</h5> <h6 class="PCkeyBlack">-</h6>  <div class="blackKey" id="-"></div></div>
+        <div id="x" class="key white" > <h3 class="note">D</h3> <h5 class="PCkey">x</h5> <h6 class="PCkeyBlack">=</h6>  <div class="blackKey" id="="></div></div>
+        <div id="c" class="key white" > <h3 class="note">E</h3> <h5 class="PCkey">c</h5>                                                                   </div>
+        <div id="v" class="key white" > <h3 class="note">F</h3> <h5 class="PCkey">v</h5> <h6 class="PCkeyBlack"><-</h6> <div class="blackKey" id="back"></div></div>
+        <div id="b" class="key white" > <h3 class="note">G</h3> <h5 class="PCkey">b</h5> <h6 class="PCkeyBlack">]</h6>  <div class="blackKey" id="]"></div></div>
+        <div id="n" class="key white" > <h3 class="note">A</h3> <h5 class="PCkey">n</h5> <h6 class="PCkeyBlack">#</h6>  <div class="blackKey" id="#"></div></div>
+        <div id="m" class="key white" > <h3 class="note">B</h3> <h5 class="PCkey">m</h5>                                                                    </div>
+    </div>
+</div>
+
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="effects.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -135,6 +135,29 @@ function changeKeyColor(name){
 
     if(guideStarted === true) {
         document.getElementById("toPressList").innerHTML = keysToPress; // Refresh keysToPress list
+        if(keysToPress.length === 0){ //Once the user completes the guide
+            const start = () => {
+                setTimeout(function() {
+                    confetti.start()
+                }, 1000); //  1000 = 1 sec
+            };
+            
+            //  for stopping the confetti 
+            
+            const stop = () => {
+                setTimeout(function() {
+                    confetti.stop()
+                }, 5000); // 5000 = 5 sec
+            };
+            // Will start the confetti for 1 sec the stops after 5 secs.
+            start();
+            stop();
+
+            setTimeout(function () {
+                alert("Great Job!"); //A popup will appear telling the player goodjob for 3 secs.
+            }, 3000); 
+            
+        }
     }
 }
 
